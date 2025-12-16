@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import SampleForm from "./components/SampleForm";
+import ServiceForm from "./components/ServiceForm";
+
 const App = () => {
   const [backendStatus, setbackendStatus] = useState("");
   const checkBackendStatus = async () => {
@@ -94,12 +96,19 @@ const App = () => {
                   >
                     📝 Open Sample Form
                   </Link>
+                  <Link
+                    to="/sample-service-form"
+                    className="block w-full bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 text-center"
+                  >
+                    📝 Open Sample Service Form
+                  </Link>
                 </div>
               </div>
             </div>
           }
         />
         <Route path="/sample-form" element={<SampleForm />} />
+        <Route path="/sample-service-form" element={<ServiceForm />} />
       </Routes>
     </>
   );

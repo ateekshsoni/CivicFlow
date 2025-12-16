@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { dbPromise } from "../db";
+import { dbPromise } from "../db/db";
 
 const SampleForm = () => {
   const saveTimerRef = useRef(null);

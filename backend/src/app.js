@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
 
 dotenv.config();
 
@@ -25,6 +27,23 @@ if (process.env.NODE_ENV !== "production") {
     next();
   });
 }
+
+app.get("/forms/:id", (req, res) => {
+  const formId = req.params.id;
+
+  try {
+    console.log(`Fetching schema for form ID: ${formId}`);
+    const schemaPath = path.join(
+      process.cwd(),
+      "src/schemas",
+      `${formId}.json`
+    );
+    const schema = fs.readFileSync(schemaPath, "utf-8");
+    res.json(JSON.parse(schema));
+  } catch (error) {
+    res.status(404).json({ message: "Form schema not found", formId });
+  }
+});
 
 app.get("/health", (req, res) => {
   res.status(200).json({
