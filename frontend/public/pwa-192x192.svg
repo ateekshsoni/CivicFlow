@@ -1,10 +1,26 @@
-<svg width="192" height="192" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="192" height="192" fill="url(#grad)"/>
-  <text x="96" y="120" font-size="80" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">CF</text>
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" fill="#F5F5F5"/>
+  
+  <!-- Shield base (teal dark) -->
+  <path d="M96 35 L146 60 L146 110 Q146 145 96 168 Q46 145 46 110 L46 60 Z" fill="#1E5F6E"/>
+  
+  <!-- Shield middle (teal) -->
+  <path d="M96 42 L138 63 L138 108 Q138 138 96 158 Q54 138 54 108 L54 63 Z" fill="#2A7C8A"/>
+  
+  <!-- Shield inner (light) -->
+  <path d="M96 50 L130 67 L130 105 Q130 130 96 147 Q62 130 62 105 L62 67 Z" fill="#FFFFFF"/>
+  
+  <!-- Check mark (green) -->
+  <path d="M83 98 L92 112 L118 80" stroke="#4CAF50" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- WiFi/signal waves (blue) -->
+  <path d="M96 55 Q113 55 122 64" stroke="#5B9FBD" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M96 51 Q118 51 129 62" stroke="#5B9FBD" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M96 47 Q123 47 136 60" stroke="#7DB3CC" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Up arrow (green) -->
+  <path d="M125 115 L133 102 L141 115 M133 102 L133 128" stroke="#4CAF50" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- "C" letter (dark blue) -->
+  <path d="M73 88 Q65 88 65 100 Q65 112 73 112" stroke="#2C3E78" stroke-width="6" fill="none" stroke-linecap="round"/>
 </svg>
