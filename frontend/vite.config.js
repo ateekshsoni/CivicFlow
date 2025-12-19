@@ -44,7 +44,11 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/localhost:4000\/.*$/i,
+            // Cache API calls to backend (supports both localhost and production)
+            urlPattern: ({ url }) => {
+              return url.origin === 'https://civicflow-k8zg.onrender.com' || 
+                     url.origin === 'http://localhost:4000';
+            },
             handler: "NetworkFirst",
             options: {
               cacheName: "api-cache",

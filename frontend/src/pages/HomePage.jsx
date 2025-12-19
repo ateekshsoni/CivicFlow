@@ -6,7 +6,7 @@ const HomePage = () => {
   const [backendStatus, setbackendStatus] = useState("");
   const checkBackendStatus = async () => {
     try {
-      let response = await axios.get("http://localhost:4000/status", {
+      let response = await axios.get(`${import.meta.env.VITE_API_URL}/status`, {
         withCredentials: true,
       });
       if (response.status === 200) {

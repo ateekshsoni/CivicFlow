@@ -7,31 +7,6 @@ const ServiceForms = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const response = await axios.get(
-  //         `${import.meta.env.VITE_API_URL}/forms`
-  //       );
-  //       const data = response.data;
-  //       setReceivedData(data);
-  //       setError(null);
-  //       console.log(
-  //         "Service Forms response:",
-  //         { response, data },
-  //         data["forms"].map((form) => form.id)
-  //       );
-  //     } catch (error) {
-  //       console.error("Error fetching service forms:", error);
-  //       setError("Failed to load forms. Please try again later.");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
   useEffect(() => {
     async function loadForms() {
       try {
