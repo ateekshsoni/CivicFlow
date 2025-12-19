@@ -30,6 +30,9 @@ const HomePage = () => {
               Your Civic Engagement Platform
             </p>
           </div>
+          <div>
+            <h2>Your Submissions </h2>
+          </div>
 
           <div className="bg-linear-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 mb-6">
             <p className="text-sm font-medium text-gray-700 mb-3">
@@ -91,10 +94,10 @@ const HomePage = () => {
               📝 Open Sample Form
             </Link>
             <Link
-              to="/sample-service-form"
+              to="/service-forms"
               className="block w-full bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 text-center"
             >
-              📝 Open Sample Service Form
+              📝 Check Sample Service Form
             </Link>
           </div>
         </div>

@@ -28,6 +28,50 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
+app.get("/forms", (req, res) => {
+  try {
+    const formsDirectory = path.join(process.cwd(), "src/schemas");
+
+    // Read all files in the schemas directory
+    const files = fs.readdirSync(formsDirectory);
+
+    // Filter only .json files and read their contents
+    const forms = files
+      .filter((file) => file.endsWith(".json"))
+      .map((file) => {
+        try {
+          const filePath = path.join(formsDirectory, file);
+          const fileContent = fs.readFileSync(filePath, "utf-8");
+          const formData = JSON.parse(fileContent);
+
+          // Return essential metadata
+          return {
+            id: formData.id,
+            title: formData.title,
+            description: formData.description,
+            fieldCount: formData.fields ? formData.fields.length : 0,
+          };
+        } catch (err) {
+          console.error(`Error reading form ${file}:`, err.message);
+          return null;
+        }
+      })
+      .filter((form) => form !== null); // Remove any failed reads
+
+    res.json({
+      success: true,
+      count: forms.length,
+      forms: forms,
+    });
+  } catch (error) {
+    console.error("Error reading forms directory:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to load forms",
+    });
+  }
+});
+
 app.get("/forms/:id", (req, res) => {
   const formId = req.params.id;
 

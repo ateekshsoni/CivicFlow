@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getFormSchema } from "../services/fetchSechemaService";
+import { dbPromise } from "../db/db";
+import { useParams } from "react-router-dom";
 
 const ServiceForm = () => {
   const [schema, setSchema] = useState(null);
@@ -7,11 +9,13 @@ const ServiceForm = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const { formId } = useParams();
 
   useEffect(() => {
     async function loadSchema() {
       try {
-        const result = await getFormSchema("scholarship-2026");
+        const result = await getFormSchema(formId);
         console.log("Schema fetch result:", result);
         if (result.success) {
           setSchema(result.data);
@@ -31,7 +35,7 @@ const ServiceForm = () => {
       }
     }
     loadSchema();
-  }, []);
+  }, [formId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +48,35 @@ const ServiceForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitted(true);
     try {
+      const db = await dbPromise;
+
+      if (!db) {
+        console.error("IndexedDB is not initialized");
+        setIsSubmitting(false);
+        setError("Internal error: Unable to save submission");
+        return;
+      }
+
+      if (db.get("submissions", { serviceId: schema.id, data: formData })) {
+        console.log("Duplicate submission detected. Skipping save.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      await db.put(
+        "submissions",
+        {
+          serviceId: schema.id,
+          data: formData,
+          status: "completed",
+          synced: false,
+          completedAt: new Date().toISOString(),
+        },
+        `submission-${Date.now()}`
+      );
+
       console.log("Form submitted:", formData);
       // Add your submit logic here
     } catch (err) {
@@ -98,8 +130,18 @@ const ServiceForm = () => {
     );
   }
 
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">Thank You!</h2>
+          <p className="text-gray-600">Your submission has been received.</p>
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className="min-h-screen bg-linaer-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6">
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-8 md:p-12">
         <div className="mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 mb-2">
@@ -159,10 +201,10 @@ const ServiceForm = () => {
             {isSubmitting ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                Submitting...
+                Completing Service...
               </>
             ) : (
-              "Submit Form"
+              "Complete Service"
             )}
           </button>
         </form>
