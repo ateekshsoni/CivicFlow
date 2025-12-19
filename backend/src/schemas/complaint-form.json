@@ -1,0 +1,39 @@
+{
+  "id": "complaint-form",
+  "title": "Public Complaint Form",
+  "description": "Submit a complaint about public services or facilities",
+  "fields": [
+    {
+      "key": "fullName",
+      "label": "Full Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "email",
+      "label": "Email Address",
+      "type": "email",
+      "required": true
+    },
+    {
+      "key": "phone",
+      "label": "Phone Number",
+      "type": "tel",
+      "required": false
+    },
+    {
+      "key": "complaintType",
+      "label": "Complaint Category",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g., Road, Water, Sanitation, Electricity"
+    },
+    {
+      "key": "description",
+      "label": "Complaint Description",
+      "type": "text",
+      "required": true,
+      "placeholder": "Please describe your complaint in detail"
+    }
+  ]
+}

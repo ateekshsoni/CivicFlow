@@ -1,0 +1,32 @@
+{
+  "id": "contact-us",
+  "title": "Contact Government Office",
+  "description": "Get in touch with your local government office",
+  "fields": [
+    {
+      "key": "fullName",
+      "label": "Full Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "email",
+      "label": "Email Address",
+      "type": "email",
+      "required": true
+    },
+    {
+      "key": "subject",
+      "label": "Subject",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "message",
+      "label": "Message",
+      "type": "text",
+      "required": true,
+      "placeholder": "How can we help you?"
+    }
+  ]
+}

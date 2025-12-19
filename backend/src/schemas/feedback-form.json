@@ -1,0 +1,33 @@
+{
+  "id": "feedback-form",
+  "title": "Citizen Feedback Form",
+  "description": "Share your feedback or suggestions to improve public services",
+  "fields": [
+    {
+      "key": "name",
+      "label": "Your Name",
+      "type": "text",
+      "required": false
+    },
+    {
+      "key": "email",
+      "label": "Email Address",
+      "type": "email",
+      "required": false
+    },
+    {
+      "key": "department",
+      "label": "Department/Service",
+      "type": "text",
+      "required": true,
+      "placeholder": "Which department is this feedback about?"
+    },
+    {
+      "key": "feedback",
+      "label": "Your Feedback",
+      "type": "text",
+      "required": true,
+      "placeholder": "Share your thoughts and suggestions"
+    }
+  ]
+}
