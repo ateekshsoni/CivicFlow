@@ -282,6 +282,19 @@ app.get("/status", (req, res) => {
 });
 
 /**
+ * GET /ping
+ *
+ * Lightweight keep-alive endpoint
+ * Used to prevent Render free tier from spinning down
+ * Returns minimal response for efficiency
+ *
+ * @returns {Object} Simple pong response
+ */
+app.get("/ping", (req, res) => {
+  res.status(200).json({ pong: true, timestamp: Date.now() });
+});
+
+/**
  * GET /
  *
  * Root endpoint - API information and available endpoints
@@ -358,5 +371,40 @@ app.use((err, req, res, next) => {
         : undefined,
   });
 });
+
+// KEEP-ALIVE MECHANISM FOR RENDER FREE TIER
+
+/**
+ * Self-ping to prevent Render free tier spin-down
+ * Render free tier spins down after 15 minutes of inactivity
+ * This pings the server every 14 minutes to keep it alive
+ * 
+ * Note: Only runs if RENDER_SERVICE_NAME environment variable is set
+ * This prevents the mechanism from running in local development
+ */
+if (process.env.RENDER || process.env.RENDER_SERVICE_NAME) {
+  const PING_INTERVAL = 14 * 60 * 1000; // 14 minutes in milliseconds
+  const SERVICE_URL = process.env.RENDER_EXTERNAL_URL || process.env.SERVICE_URL;
+
+  if (SERVICE_URL) {
+    setInterval(async () => {
+      try {
+        const response = await fetch(`${SERVICE_URL}/ping`);
+        if (response.ok) {
+          console.log(`✅ Keep-alive ping successful at ${new Date().toISOString()}`);
+        } else {
+          console.warn(`⚠️ Keep-alive ping returned status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error(`❌ Keep-alive ping failed:`, error.message);
+      }
+    }, PING_INTERVAL);
+
+    console.log(`🔄 Keep-alive mechanism enabled (ping every 14 minutes)`);
+    console.log(`📍 Target URL: ${SERVICE_URL}/ping`);
+  } else {
+    console.warn(`⚠️ Keep-alive enabled but SERVICE_URL not found. Set RENDER_EXTERNAL_URL environment variable.`);
+  }
+}
 
 export default app;
