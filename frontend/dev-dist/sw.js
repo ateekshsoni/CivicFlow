@@ -82,13 +82,17 @@ define(['./workbox-6fc00345'], (function (workbox) { 'use strict';
     "revision": "3ca0b8505b4bec776b69afdba2768812"
   }, {
     "url": "index.html",
-    "revision": "0.ie7h4vrik14"
+    "revision": "0.orb35re8e4o"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
-  workbox.registerRoute(/^https:\/\/localhost:4000\/.*$/i, new workbox.NetworkFirst({
+  workbox.registerRoute(({
+    url
+  }) => {
+    return url.origin === "https://civicflow-k8zg.onrender.com" || url.origin === "http://localhost:4000";
+  }, new workbox.NetworkFirst({
     "cacheName": "api-cache",
     plugins: [new workbox.ExpirationPlugin({
       maxEntries: 50,

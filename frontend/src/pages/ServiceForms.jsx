@@ -1,32 +1,66 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllAvailableForms } from "../services/fetchForms";
 
+/**
+ * ServiceForms Component
+ *
+ * Displays a grid of all available civic service forms
+ * Handles loading, error, and empty states
+ * Supports offline mode with cached data
+ *
+ * Features:
+ * - Fetches forms list from backend
+ * - Falls back to cache when offline
+ * - Shows loading spinner during fetch
+ * - Displays error messages on failure
+ * - Responsive grid layout
+ * - Form cards with metadata (title, description, field count)
+ */
 const ServiceForms = () => {
-  const [receivedData, setReceivedData] = useState({});
+  // State management
+  const [formsData, setFormsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isCached, setIsCached] = useState(false);
 
+  /**
+   * Load forms on component mount
+   * Handles both online and offline scenarios
+   */
   useEffect(() => {
-    async function loadForms() {
+    const loadForms = async () => {
       try {
-        const data = await getAllAvailableForms();
-        setReceivedData(data);
+        setLoading(true);
         setError(null);
-        console.log(
-          "Service Forms response:",
-          data,
-          data["forms"].map((form) => form.id)
-        );
-      } catch (error) {
-        console.error("Error fetching service forms:", error);
-        setError("Failed to load forms. Please try again later.");
+
+        const result = await getAllAvailableForms();
+
+        // Check if service call was successful
+        if (result.success) {
+          setFormsData(result.data);
+          setIsCached(result.cached);
+          console.log(
+            `📋 Loaded ${result.data.count} forms${
+              result.cached ? " from cache" : ""
+            }`
+          );
+        } else {
+          // Service returned failure
+          setError(result.message || "Failed to load forms");
+          console.error("❌ Failed to load forms:", result.message);
+        }
+      } catch (err) {
+        // Unexpected error (shouldn't happen with proper service)
+        console.error("❌ Unexpected error loading forms:", err);
+        setError("An unexpected error occurred. Please try again.");
       } finally {
         setLoading(false);
       }
-    }
+    };
+
     loadForms();
-  }, []);
+  }, []); // Empty dependency array - load once on mount
 
   // Loading state
   if (loading) {
@@ -85,19 +119,29 @@ const ServiceForms = () => {
             Choose from our collection of civic service forms. Quick, easy, and
             secure.
           </p>
-          {receivedData.count && (
+          {/* Show cache indicator if data is from cache */}
+          {isCached && (
+            <div className="mt-4 inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full">
+              <span className="text-yellow-700 font-medium text-sm">
+                📦 Viewing cached data (offline mode)
+              </span>
+            </div>
+          )}
+          {/* Show forms count */}
+          {formsData?.count !== undefined && (
             <div className="mt-4 inline-flex items-center px-4 py-2 bg-indigo-100 rounded-full">
               <span className="text-indigo-700 font-semibold">
-                {receivedData.count} Forms Available
+                {formsData.count} Form{formsData.count !== 1 ? "s" : ""}{" "}
+                Available
               </span>
             </div>
           )}
         </div>
 
         {/* Forms Grid */}
-        {receivedData.forms?.length > 0 ? (
+        {formsData?.forms?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {receivedData.forms.map((form) => (
+            {formsData.forms.map((form) => (
               <div
                 key={form.id}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col transform hover:-translate-y-1"
@@ -121,7 +165,7 @@ const ServiceForms = () => {
                   </div>
                   {form.fieldCount && (
                     <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
-                      {form.fieldCount} fields
+                      {form.fieldCount} field{form.fieldCount !== 1 ? "s" : ""}
                     </span>
                   )}
                 </div>

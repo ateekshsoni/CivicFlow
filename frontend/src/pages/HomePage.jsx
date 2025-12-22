@@ -2,20 +2,45 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * HomePage Component
+ *
+ * Landing page for CivicFlow application
+ * Features:
+ * - Backend connectivity check with visual indicators
+ * - Quick navigation to forms and submissions
+ * - Responsive design with gradient styling
+ */
+
 const HomePage = () => {
-  const [backendStatus, setbackendStatus] = useState("");
+  const [backendStatus, setBackendStatus] = useState("");
+  const [isCheckingStatus, setIsCheckingStatus] = useState(false);
+
+  /**
+   * Check backend server connectivity
+   * Makes a GET request to /status endpoint
+   * Updates backendStatus state with result
+   */
   const checkBackendStatus = async () => {
     try {
-      let response = await axios.get(`${import.meta.env.VITE_API_URL}/status`, {
-        withCredentials: true,
-      });
+      setIsCheckingStatus(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/status`,
+        {
+          withCredentials: true,
+          timeout: 5000, // 5 second timeout
+        }
+      );
+
       if (response.status === 200) {
-        setbackendStatus("connected");
+        console.log("✅ Backend connected successfully");
+        setBackendStatus("connected");
       }
     } catch (error) {
-      console.error("Error fetching backend status:", error);
-      console.log("Backend is not running or unreachable.");
-      setbackendStatus("disconnected");
+      console.error("❌ Backend connection failed:", error.message);
+      setBackendStatus("disconnected");
+    } finally {
+      setIsCheckingStatus(false);
     }
   };
   return (
@@ -30,9 +55,55 @@ const HomePage = () => {
               Your Civic Engagement Platform
             </p>
           </div>
-          <div>
-            <h2>Your Submissions </h2>
-          </div>
+
+          {/* Your Submissions Section */}
+          <Link
+            to="/user-submissions"
+            className="block mb-6 bg-linear-to-r from-indigo-500 to-purple-500 rounded-2xl p-6 hover:from-indigo-600 hover:to-purple-600 transform hover:scale-[1.02] transition duration-200 shadow-lg hover:shadow-xl group"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl group-hover:bg-white/30 transition">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <h2 className="text-xl font-bold text-white mb-1">
+                    Your Submissions
+                  </h2>
+                  <p className="text-indigo-100 text-sm">
+                    View and manage your form submissions
+                  </p>
+                </div>
+              </div>
+              <div className="bg-white/20 backdrop-blur-sm p-2 rounded-lg group-hover:bg-white/30 group-hover:translate-x-1 transition">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </Link>
 
           <div className="bg-linear-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 mb-6">
             <p className="text-sm font-medium text-gray-700 mb-3">
@@ -40,9 +111,10 @@ const HomePage = () => {
             </p>
             <button
               onClick={checkBackendStatus}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              disabled={isCheckingStatus}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Check Backend Status
+              {isCheckingStatus ? "Checking..." : "Check Backend Status"}
             </button>
 
             {backendStatus === "connected" && (
@@ -63,6 +135,7 @@ const HomePage = () => {
                 </span>
               </div>
             )}
+
             {backendStatus === "disconnected" && (
               <div className="mt-4 flex items-center justify-center gap-2 text-red-700 bg-red-100 py-3 px-4 rounded-lg">
                 <svg
