@@ -1,0 +1,22 @@
+# Submissions Storage Directory
+
+This directory stores form submissions as JSON files, organized by month (YYYY-MM).
+
+## Structure:
+```
+submissions/
+  2025-12/
+    birth-certificate-1703155200000-a7b3c2.json
+    driving-license-1703155300000-x8y9z1.json
+  2026-01/
+    scholarship-1704197400000-e4f5g6.json
+```
+
+## MVP Implementation
+- Files are created automatically by the `/api/sync-submissions` endpoint
+- Each submission is stored as a separate JSON file
+- Organized by year-month for easy archival
+- Idempotent - duplicate submissions are safely ignored
+
+## Future Migration
+When ready, submissions can be migrated to SQLite or PostgreSQL by reading these files and importing them into a database.

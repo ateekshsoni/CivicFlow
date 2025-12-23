@@ -54,9 +54,9 @@ export const saveSubmission = async (schema, formData) => {
       // User's form data
       formData: formData,
 
-      // Status tracking
-      status: "pending", // pending | synced | failed
-      synced: false,
+      // Status tracking (two separate concerns)
+      status: "complete", // Submission lifecycle: "complete" (form submitted)
+      synced: "pending", // Backend sync state: "pending" | "synced" | "failed"
 
       // Timestamps
       submittedAt: new Date().toISOString(),
@@ -163,6 +163,39 @@ export const deleteSubmission = async (submissionId) => {
     return {
       success: false,
       message: err.message || "Failed to delete submission",
+    };
+  }
+};
+
+export const updateSubmissionStatus = async (submissionId, statusUpdate) => {
+  try {
+    const submission = await getSubmissionById(submissionId);
+    if (!submission) {
+      throw new Error("Submission not found");
+    }
+
+    // Update fields
+    const updatedSubmission = {
+      ...submission,
+      ...statusUpdate,
+    };
+
+    const db = await dbPromise;
+    await db.put("submissions", updatedSubmission, submissionId);
+
+    console.log(`✅ Updated submission status: ${submissionId}`, statusUpdate);
+
+    return {
+      success: true,
+      message: "Submission updated successfully",
+      data: updatedSubmission,
+    };
+  } catch (err) {
+    console.error("❌ Failed to update submission status:", err);
+    return {
+      success: false,
+      message: err.message || "Failed to update submission",
+      error: err,
     };
   }
 };

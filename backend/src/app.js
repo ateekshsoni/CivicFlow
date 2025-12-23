@@ -282,6 +282,181 @@ app.get("/status", (req, res) => {
 });
 
 /**
+ * POST /api/sync-submissions
+ *
+ * Sync form submissions from frontend to backend
+ * Stores submissions as JSON files organized by month
+ * Implements idempotency to prevent duplicate submissions
+ *
+ * @param {Array} submissions - Array of submission objects from frontend
+ * @returns {Object} Sync results with success/failure details
+ *
+ * @example Request body:
+ * {
+ *   "submissions": [
+ *     {
+ *       "submissionId": "birth-certificate-1703155200000-a7b3c2",
+ *       "userId": "uuid-here",
+ *       "formId": "birth-certificate",
+ *       "formData": { ... },
+ *       "status": "complete",
+ *       "synced": "pending",
+ *       "submittedAt": "2025-12-22T10:30:00Z"
+ *     }
+ *   ]
+ * }
+ *
+ * @example Success response:
+ * {
+ *   "success": true,
+ *   "message": "5 of 5 submissions synced successfully",
+ *   "syncedCount": 5,
+ *   "syncedIds": ["id1", "id2", ...]
+ * }
+ */
+app.post("/api/sync-submissions", (req, res) => {
+  try {
+    const { submissions } = req.body;
+
+    // Validation
+    if (!submissions) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing 'submissions' field in request body",
+      });
+    }
+
+    if (!Array.isArray(submissions)) {
+      return res.status(400).json({
+        success: false,
+        message: "'submissions' must be an array",
+      });
+    }
+
+    if (submissions.length === 0) {
+      return res.status(200).json({
+        success: true,
+        message: "No submissions to sync",
+        syncedCount: 0,
+        syncedIds: [],
+      });
+    }
+
+    // Process submissions
+    const syncedIds = [];
+    const failedSyncs = [];
+
+    for (const submission of submissions) {
+      try {
+        // Validate required fields
+        if (!submission.submissionId || !submission.formId) {
+          throw new Error("Missing required fields: submissionId or formId");
+        }
+
+        // Sanitize submission ID (prevent path traversal)
+        const sanitizedId = submission.submissionId.replace(
+          /[^a-zA-Z0-9-]/g,
+          ""
+        );
+
+        // Create directory structure: submissions/YYYY-MM/
+        const date = new Date(submission.submittedAt || new Date());
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const yearMonth = `${year}-${month}`;
+
+        const submissionsDir = path.join(process.cwd(), "src/submissions");
+        const monthDir = path.join(submissionsDir, yearMonth);
+
+        // Create directories if they don't exist
+        if (!fs.existsSync(submissionsDir)) {
+          fs.mkdirSync(submissionsDir, { recursive: true });
+        }
+        if (!fs.existsSync(monthDir)) {
+          fs.mkdirSync(monthDir, { recursive: true });
+        }
+
+        // File path
+        const filename = `${sanitizedId}.json`;
+        const filepath = path.join(monthDir, filename);
+
+        // Idempotency check - if file exists, consider it already synced
+        if (fs.existsSync(filepath)) {
+          console.log(`⚠️ Submission already exists: ${sanitizedId}`);
+          syncedIds.push(submission.submissionId);
+          continue;
+        }
+
+        // Prepare submission data with server timestamp
+        const submissionData = {
+          ...submission,
+          syncedAt: new Date().toISOString(),
+          synced: "synced", // Update sync status
+        };
+
+        // Write submission to file
+        fs.writeFileSync(
+          filepath,
+          JSON.stringify(submissionData, null, 2),
+          "utf-8"
+        );
+
+        syncedIds.push(submission.submissionId);
+        console.log(`✅ Saved submission: ${sanitizedId}`);
+      } catch (err) {
+        console.error(
+          `❌ Failed to save submission ${submission.submissionId}:`,
+          err.message
+        );
+
+        failedSyncs.push({
+          submissionId: submission.submissionId,
+          error: err.message,
+          canRetry: true,
+        });
+      }
+    }
+
+    // Build response
+    const syncedCount = syncedIds.length;
+    const failedCount = failedSyncs.length;
+    const totalCount = submissions.length;
+
+    const response = {
+      success: failedCount === 0,
+      message:
+        failedCount === 0
+          ? `${syncedCount} of ${totalCount} submissions synced successfully`
+          : `${syncedCount} of ${totalCount} submissions synced, ${failedCount} failed`,
+      syncedCount,
+      failedCount,
+      syncedIds,
+      timestamp: new Date().toISOString(),
+    };
+
+    // Only include failedSyncs if there are failures
+    if (failedCount > 0) {
+      response.failedSyncs = failedSyncs;
+    }
+
+    // Log summary
+    console.log(
+      `📊 Sync summary: ${syncedCount} success, ${failedCount} failed`
+    );
+
+    res.status(200).json(response);
+  } catch (err) {
+    console.error("❌ Sync endpoint error:", err);
+
+    res.status(500).json({
+      success: false,
+      message: "Internal server error during sync",
+      error: NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
+});
+
+/**
  * GET /ping
  *
  * Lightweight keep-alive endpoint
@@ -311,6 +486,8 @@ app.get("/", (req, res) => {
       status: "/status - Simple connectivity check",
       forms: "/forms - List all available forms",
       formById: "/forms/:id - Get specific form schema",
+      syncSubmissions:
+        "/api/sync-submissions - Sync form submissions from frontend",
     },
     documentation: "https://github.com/ateekshsoni/civicflow",
   });
@@ -333,7 +510,14 @@ app.use((req, res) => {
     message: "Route not found",
     path: req.path,
     method: req.method,
-    availableEndpoints: ["/", "/health", "/status", "/forms", "/forms/:id"],
+    availableEndpoints: [
+      "/",
+      "/health",
+      "/status",
+      "/forms",
+      "/forms/:id",
+      "/api/sync-submissions",
+    ],
   });
 });
 
@@ -378,22 +562,27 @@ app.use((err, req, res, next) => {
  * Self-ping to prevent Render free tier spin-down
  * Render free tier spins down after 15 minutes of inactivity
  * This pings the server every 14 minutes to keep it alive
- * 
+ *
  * Note: Only runs if RENDER_SERVICE_NAME environment variable is set
  * This prevents the mechanism from running in local development
  */
 if (process.env.RENDER || process.env.RENDER_SERVICE_NAME) {
   const PING_INTERVAL = 14 * 60 * 1000; // 14 minutes in milliseconds
-  const SERVICE_URL = process.env.RENDER_EXTERNAL_URL || process.env.SERVICE_URL;
+  const SERVICE_URL =
+    process.env.RENDER_EXTERNAL_URL || process.env.SERVICE_URL;
 
   if (SERVICE_URL) {
     setInterval(async () => {
       try {
         const response = await fetch(`${SERVICE_URL}/ping`);
         if (response.ok) {
-          console.log(`✅ Keep-alive ping successful at ${new Date().toISOString()}`);
+          console.log(
+            `✅ Keep-alive ping successful at ${new Date().toISOString()}`
+          );
         } else {
-          console.warn(`⚠️ Keep-alive ping returned status: ${response.status}`);
+          console.warn(
+            `⚠️ Keep-alive ping returned status: ${response.status}`
+          );
         }
       } catch (error) {
         console.error(`❌ Keep-alive ping failed:`, error.message);
@@ -403,7 +592,9 @@ if (process.env.RENDER || process.env.RENDER_SERVICE_NAME) {
     console.log(`🔄 Keep-alive mechanism enabled (ping every 14 minutes)`);
     console.log(`📍 Target URL: ${SERVICE_URL}/ping`);
   } else {
-    console.warn(`⚠️ Keep-alive enabled but SERVICE_URL not found. Set RENDER_EXTERNAL_URL environment variable.`);
+    console.warn(
+      `⚠️ Keep-alive enabled but SERVICE_URL not found. Set RENDER_EXTERNAL_URL environment variable.`
+    );
   }
 }
 

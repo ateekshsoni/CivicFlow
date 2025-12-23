@@ -3,6 +3,7 @@ import {
   getUserSubmissions,
   deleteSubmission,
 } from "../services/fetchSubmissions";
+import { syncUserSubmissions } from "../services/syncSubmission";
 
 /**
  * UserSubmissions Component
@@ -20,6 +21,8 @@ const UserSubmissions = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
+  const [syncing, setSyncing] = useState(false);
+  const [syncMessage, setSyncMessage] = useState(null);
 
   useEffect(() => {
     loadSubmissions();
@@ -98,6 +101,84 @@ const UserSubmissions = () => {
     } catch {
       return timestamp;
     }
+  };
+
+  /**
+   * Sync pending submissions to backend
+   */
+  const handleSync = async () => {
+    try {
+      setSyncing(true);
+      setSyncMessage(null);
+
+      console.log("🔄 Starting manual sync...");
+      const result = await syncUserSubmissions();
+
+      if (result.success) {
+        // Reload submissions to show updated sync status
+        await loadSubmissions();
+
+        // Show success message
+        setSyncMessage({
+          type: "success",
+          text:
+            result.syncedCount > 0
+              ? `✅ ${result.syncedCount} submission${
+                  result.syncedCount !== 1 ? "s" : ""
+                } synced successfully!`
+              : "✅ All submissions are already synced",
+        });
+
+        // Clear message after 5 seconds
+        setTimeout(() => setSyncMessage(null), 5000);
+      } else {
+        setSyncMessage({
+          type: "error",
+          text: `❌ ${result.message}`,
+        });
+      }
+    } catch (err) {
+      console.error("❌ Sync error:", err);
+      setSyncMessage({
+        type: "error",
+        text: "❌ Failed to sync submissions. Please try again.",
+      });
+    } finally {
+      setSyncing(false);
+    }
+  };
+
+  /**
+   * Get sync status badge component
+   * @param {Object} submission - Submission object
+   */
+  const getSyncStatusBadge = (submission) => {
+    if (submission.synced === "synced") {
+      return (
+        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+          ✓ Synced
+        </span>
+      );
+    }
+
+    if (submission.synced === "pending") {
+      return (
+        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+          ⏳ Pending Sync
+        </span>
+      );
+    }
+
+    if (submission.synced === "failed") {
+      const retries = submission.retryCount || 0;
+      return (
+        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+          ⚠️ Sync Failed (Retry {retries}/3)
+        </span>
+      );
+    }
+
+    return null;
   };
 
   // Loading state
@@ -193,15 +274,62 @@ const UserSubmissions = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 mb-2">
-            My Submissions
-          </h1>
-          <p className="text-gray-600">
-            {submissions.length} submission{submissions.length !== 1 ? "s" : ""}{" "}
-            saved locally
-          </p>
+        {/* Header with Sync Button */}
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 mb-2">
+              My Submissions
+            </h1>
+            <p className="text-gray-600">
+              {submissions.length} submission
+              {submissions.length !== 1 ? "s" : ""} saved locally
+            </p>
+          </div>
+
+          {/* Sync Button */}
+          <button
+            onClick={handleSync}
+            disabled={syncing}
+            className="bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2"
+          >
+            {syncing ? (
+              <>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                Syncing...
+              </>
+            ) : (
+              <>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+                Sync to Backend
+              </>
+            )}
+          </button>
         </div>
+
+        {/* Sync Status Message */}
+        {syncMessage && (
+          <div
+            className={`mb-6 p-4 rounded-lg border ${
+              syncMessage.type === "success"
+                ? "bg-green-50 border-green-200 text-green-800"
+                : "bg-red-50 border-red-200 text-red-800"
+            }`}
+          >
+            {syncMessage.text}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {submissions.map((submission) => (
@@ -238,9 +366,7 @@ const UserSubmissions = () => {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                      📦 Pending Sync
-                    </span>
+                    {getSyncStatusBadge(submission)}
                   </div>
                 </div>
 
