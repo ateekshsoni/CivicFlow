@@ -1,9 +1,9 @@
 /**
  * CivicFlow Backend Server
- * 
+ *
  * Main entry point for the Express server
  * Handles server startup, graceful shutdown, and process signals
- * 
+ *
  * Features:
  * - Environment configuration via dotenv
  * - Graceful shutdown on SIGTERM, SIGINT, and unhandled rejections
@@ -38,7 +38,7 @@ const startServer = async () => {
       console.log(`📋 API Status: http://localhost:${PORT}/status`);
       console.log("=".repeat(50) + "\n");
     });
-    
+
     return server;
   } catch (error) {
     console.error("❌ Failed to start server:", error.message);
@@ -64,7 +64,7 @@ process.on("unhandledRejection", (err) => {
   console.error("Error Message:", err.message);
   console.error("Stack Trace:", err.stack);
   console.error("=".repeat(50) + "\n");
-  
+
   server.then((srv) => {
     srv.close(() => {
       console.log("💥 Server closed due to unhandled rejection");
