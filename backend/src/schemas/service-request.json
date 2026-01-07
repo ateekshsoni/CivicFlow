@@ -1,0 +1,32 @@
+{
+  "id": "service-request",
+  "title": "Public Service Request",
+  "description": "Request a public service or assistance",
+  "fields": [
+    {
+      "key": "applicantName",
+      "label": "Applicant Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "contactEmail",
+      "label": "Contact Email",
+      "type": "email",
+      "required": true
+    },
+    {
+      "key": "serviceType",
+      "label": "Service Type",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g., Birth Certificate, Death Certificate, Tax Clearance"
+    },
+    {
+      "key": "address",
+      "label": "Address",
+      "type": "text",
+      "required": true
+    }
+  ]
+}

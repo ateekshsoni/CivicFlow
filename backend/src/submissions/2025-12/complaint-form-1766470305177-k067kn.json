@@ -1,0 +1,22 @@
+{
+  "id": "complaint-form-1766470305177-k067kn",
+  "submissionId": "complaint-form-1766470305177-k067kn",
+  "userId": "12ed9f66-e8ec-41d3-add2-cf593250fcbc",
+  "formId": "complaint-form",
+  "formTitle": "Public Complaint Form",
+  "formDescription": "Submit a complaint about public services or facilities",
+  "formData": {
+    "fullName": "Atiksh ",
+    "email": "ateekshsoni@gmail.com",
+    "phone": "08602268211",
+    "complaintType": "abc",
+    "description": "abjbs "
+  },
+  "status": "complete",
+  "synced": "synced",
+  "submittedAt": "2025-12-23T06:11:45.177Z",
+  "syncedAt": "2025-12-23T06:11:53.234Z",
+  "retryCount": 0,
+  "lastSyncAttempt": null,
+  "syncError": null
+}

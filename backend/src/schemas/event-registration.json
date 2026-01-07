@@ -1,0 +1,38 @@
+{
+  "id": "event-registration",
+  "title": "Community Event Registration",
+  "description": "Register for upcoming community events",
+  "fields": [
+    {
+      "key": "participantName",
+      "label": "Participant Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "email",
+      "label": "Email Address",
+      "type": "email",
+      "required": true
+    },
+    {
+      "key": "phone",
+      "label": "Phone Number",
+      "type": "tel",
+      "required": true
+    },
+    {
+      "key": "eventName",
+      "label": "Event Name",
+      "type": "text",
+      "required": true,
+      "placeholder": "Which event are you registering for?"
+    },
+    {
+      "key": "attendees",
+      "label": "Number of Attendees",
+      "type": "number",
+      "required": true
+    }
+  ]
+}

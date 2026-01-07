@@ -1,0 +1,25 @@
+{
+  "id": "scholarship-2026",
+  "title": "National Scholarship Application",
+  "description": "Apply for financial assistance for students",
+  "fields": [
+    {
+      "key": "fullName",
+      "label": "Full Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "email",
+      "label": "Email Address",
+      "type": "email",
+      "required": true
+    },
+    {
+      "key": "income",
+      "label": "Annual Family Income",
+      "type": "number",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield base (teal dark) -->
+  <path d="M100 20 L160 50 L160 110 Q160 150 100 180 Q40 150 40 110 L40 50 Z" fill="#1E5F6E"/>
+  
+  <!-- Shield middle (teal) -->
+  <path d="M100 30 L150 55 L150 105 Q150 140 100 165 Q50 140 50 105 L50 55 Z" fill="#2A7C8A"/>
+  
+  <!-- Shield inner (light) -->
+  <path d="M100 40 L140 60 L140 100 Q140 130 100 150 Q60 130 60 100 L60 60 Z" fill="#FFFFFF"/>
+  
+  <!-- Check mark (green) -->
+  <path d="M85 95 L95 110 L125 75" stroke="#4CAF50" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- WiFi/signal waves (blue) -->
+  <path d="M100 50 Q120 50 130 60" stroke="#5B9FBD" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M100 45 Q125 45 138 58" stroke="#5B9FBD" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M100 40 Q130 40 146 56" stroke="#7DB3CC" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Up arrow (green) -->
+  <path d="M135 110 L145 95 L155 110 M145 95 L145 125" stroke="#4CAF50" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- "C" letter (dark blue) -->
+  <path d="M75 80 Q65 80 65 95 Q65 110 75 110" stroke="#2C3E78" stroke-width="7" fill="none" stroke-linecap="round"/>
+</svg>

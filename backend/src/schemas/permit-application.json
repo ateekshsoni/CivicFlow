@@ -1,0 +1,38 @@
+{
+  "id": "permit-application",
+  "title": "Business Permit Application",
+  "description": "Apply for a business operating permit",
+  "fields": [
+    {
+      "key": "businessName",
+      "label": "Business Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ownerName",
+      "label": "Owner Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "email",
+      "label": "Email Address",
+      "type": "email",
+      "required": true
+    },
+    {
+      "key": "businessAddress",
+      "label": "Business Address",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "businessType",
+      "label": "Type of Business",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g., Retail, Restaurant, Service"
+    }
+  ]
+}
