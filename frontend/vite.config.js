@@ -46,8 +46,10 @@ export default defineConfig({
           {
             // Cache API calls to backend (supports both localhost and production)
             urlPattern: ({ url }) => {
-              return url.origin === 'https://civicflow-k8zg.onrender.com' || 
-                     url.origin === 'http://localhost:4000';
+              return (
+                url.origin === "https://civicflow-k8zg.onrender.com" ||
+                url.origin === "http://localhost:4000"
+              );
             },
             handler: "NetworkFirst",
             options: {
