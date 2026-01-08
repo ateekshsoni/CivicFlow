@@ -1,4 +1,4 @@
-import { Shield, Settings, FileText, ArrowRight } from 'lucide-react';
+import { Shield, Settings, FileText, ArrowRight, Building2 } from 'lucide-react';
 import type { Screen } from '../App';
 import type { Service } from '../App';
 
@@ -90,6 +90,15 @@ export function HomeScreen({ onNavigate, services }: HomeScreenProps) {
       >
         <span>Start a Service</span>
         <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+      </button>
+
+      {/* NEW: Institute Dashboard Button */}
+      <button 
+        onClick={() => onNavigate('instituteDashboard')}
+        className="w-full bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl py-3 sm:py-4 font-semibold hover:from-green-700 hover:to-green-600 transition-all flex items-center justify-center gap-2 text-sm sm:text-base shadow-md"
+      >
+        <Building2 className="w-4 h-4 sm:w-5 sm:h-5" />
+        <span>Institute Dashboard</span>
       </button>
     </div>
   );

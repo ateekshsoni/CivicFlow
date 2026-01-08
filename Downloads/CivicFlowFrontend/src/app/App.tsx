@@ -6,8 +6,13 @@ import { ServiceCompletion } from './components/service-completion';
 import { AdminPanel } from './components/admin-panel';
 import { SyncStatus } from './components/sync-status';
 import { Dashboard } from './components/dashboard';
+// Institute components
+import { InstituteDashboard as InstituteMainDashboard } from './components/institute-dashboard';
+import { InstituteForms } from './components/institute-forms';
+import { InstituteCreateForm } from './components/institute-create-form';
+import { InstituteSubmissions } from './components/institute-submissions';
 
-export type Screen = 'home' | 'services' | 'form' | 'completion' | 'admin' | 'sync' | 'dashboard';
+export type Screen = 'home' | 'services' | 'form' | 'completion' | 'admin' | 'sync' | 'dashboard' | 'instituteDashboard' | 'instituteForms' | 'instituteCreateForm' | 'instituteSubmissions';
 
 export interface User {
   name: string;
@@ -107,6 +112,10 @@ export default function App() {
   const [completedService, setCompletedService] = useState<Service | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
+  // Institute progress state
+  const [instituteTotal, setInstituteTotal] = useState(10);
+  const [instituteCompleted, setInstituteCompleted] = useState(3);
+
   // Load user from localStorage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem('civicflow_user');
@@ -205,6 +214,13 @@ export default function App() {
     setCurrentScreen('sync');
   };
 
+  // Handle institute submission
+  const handleInstituteSubmit = () => {
+    if (instituteCompleted < instituteTotal) {
+      setInstituteCompleted(prev => prev + 1);
+    }
+  };
+
   const renderScreen = () => {
     switch (currentScreen) {
       case 'home':
@@ -235,6 +251,14 @@ export default function App() {
         return <SyncStatus onNavigate={handleNavigate} service={completedService} />;
       case 'dashboard':
         return <Dashboard onNavigate={handleNavigate} services={services} user={user} onLogout={handleLogout} />;
+      case 'instituteDashboard':
+        return <InstituteMainDashboard onNavigate={handleNavigate} />;
+      case 'instituteForms':
+        return <InstituteForms onNavigate={handleNavigate} />;
+      case 'instituteCreateForm':
+        return <InstituteCreateForm onNavigate={handleNavigate} />;
+      case 'instituteSubmissions':
+        return <InstituteSubmissions onNavigate={handleNavigate} />;
       default:
         return <HomeScreen onNavigate={handleNavigate} services={services} />;
     }
