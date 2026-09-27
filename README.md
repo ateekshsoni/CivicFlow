@@ -59,8 +59,9 @@ Today, applying for a government service is frustrating. Citizens spend 30 minut
 ## 🏗️ Architecture Overview
 
 ```mermaid
-graph TD
-    subgraph Citizen Device [Citizen's Device - Edge]
+flowchart LR
+    subgraph CitizenDevice [Citizen's Device - Edge]
+        direction TB
         UI[React PWA]
         Cache[(IndexedDB Local Cache)]
         SW[Service Worker]
@@ -70,9 +71,10 @@ graph TD
         SW <-->|Reads on Reconnect| Cache
     end
 
-    subgraph Civic Flow [Civic Flow Middleware]
-        Node[Node.js Proxy / Adapter]
+    subgraph CivicFlow [Civic Flow Middleware]
+        direction TB
         SyncQ[Sync Queue & Conflict Resolution]
+        Node[Node.js Proxy / Adapter]
         
         SW -->|Background Sync| SyncQ
         SyncQ --> Node
@@ -83,14 +85,6 @@ graph TD
         
         Node -->|Translates & Submits| LegacyAPI
     end
-
-    classDef edge fill:#e8f4f8,stroke:#00796b,stroke-width:2px;
-    classDef mid fill:#e0f2f1,stroke:#004d40,stroke-width:2px;
-    classDef gov fill:#ffebee,stroke:#b71c1c,stroke-width:2px;
-    
-    class Citizen Device edge;
-    class Civic Flow mid;
-    class Government gov;
 ```
 
 ---
