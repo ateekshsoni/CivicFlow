@@ -60,7 +60,7 @@ Today, applying for a government service is frustrating. Citizens spend 30 minut
 
 ```mermaid
 graph TD
-    subgraph Citizen Device [Citizen's Device - Edge]
+    subgraph CitizenDevice [Citizen's Device - Edge]
         UI[React PWA]
         Cache[(IndexedDB Local Cache)]
         SW[Service Worker]
@@ -70,7 +70,7 @@ graph TD
         SW <-->|Reads on Reconnect| Cache
     end
 
-    subgraph Civic Flow [Civic Flow Middleware]
+    subgraph CivicFlow [Civic Flow Middleware]
         Node[Node.js Proxy / Adapter]
         SyncQ[Sync Queue & Conflict Resolution]
         
@@ -88,8 +88,8 @@ graph TD
     classDef mid fill:#e0f2f1,stroke:#004d40,stroke-width:2px;
     classDef gov fill:#ffebee,stroke:#b71c1c,stroke-width:2px;
     
-    class Citizen Device edge;
-    class Civic Flow mid;
+    class CitizenDevice edge;
+    class CivicFlow mid;
     class Government gov;
 ```
 
