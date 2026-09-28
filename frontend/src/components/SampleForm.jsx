@@ -57,17 +57,14 @@ const SampleForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+    <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center p-6 font-sans text-neutral-900">
+      <div className="w-full max-w-md bg-white/70 backdrop-blur-xl border border-neutral-200/60 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <h2 className="text-3xl font-extrabold text-neutral-900 mb-6 text-center font-display tracking-tight">
           Sample Form
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+          <div className="space-y-1.5">
+            <label htmlFor="name" className="block text-sm font-semibold text-neutral-700">
               Name
             </label>
             <input
@@ -77,14 +74,11 @@ const SampleForm = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your name"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition duration-200 placeholder:text-gray-400"
+              className="w-full px-4 py-3 bg-white border border-neutral-200 rounded-xl focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-all duration-200 placeholder:text-neutral-400 shadow-xs"
             />
           </div>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+          <div className="space-y-1.5">
+            <label htmlFor="email" className="block text-sm font-semibold text-neutral-700">
               Email
             </label>
             <input
@@ -94,16 +88,17 @@ const SampleForm = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter your email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition duration-200 placeholder:text-gray-400"
+              className="w-full px-4 py-3 bg-white border border-neutral-200 rounded-xl focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 outline-none transition-all duration-200 placeholder:text-neutral-400 shadow-xs"
             />
           </div>
-          <button
-            type="submit"
-            onSubmit={handleSubmit}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Submit
-          </button>
+          <div className="pt-2">
+            <button
+              type="submit"
+              className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-3.5 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-xs"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>
