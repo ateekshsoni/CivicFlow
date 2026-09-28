@@ -184,14 +184,12 @@ const UserSubmissions = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-6">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+      <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center p-6 font-sans text-neutral-900">
+        <div className="bg-white border border-neutral-200 rounded-3xl p-8 max-w-md w-full text-center shadow-xs">
           <div className="flex justify-center mb-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-neutral-900"></div>
           </div>
-          <p className="text-gray-600 font-medium">
-            Loading your submissions...
-          </p>
+          <p className="text-neutral-500 font-medium">Loading your submissions...</p>
         </div>
       </div>
     );
@@ -200,30 +198,18 @@ const UserSubmissions = () => {
   // Error state
   if (error) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-6">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
-          <div className="flex items-center justify-center mb-4">
-            <svg
-              className="w-12 h-12 text-red-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
+      <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center p-6 font-sans text-neutral-900">
+        <div className="bg-white border border-neutral-200 rounded-3xl p-8 max-w-md w-full text-center shadow-xs">
+          <div className="flex items-center justify-center mb-4 text-red-500">
+            <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-gray-800 text-center mb-2">
-            Error Loading Submissions
-          </h3>
-          <p className="text-red-600 text-center text-sm">{error}</p>
+          <h3 className="text-lg font-semibold text-neutral-900 mb-2">Error Loading Submissions</h3>
+          <p className="text-neutral-500 text-sm mb-6">{error}</p>
           <button
             onClick={loadSubmissions}
-            className="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg"
+            className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-3 px-4 rounded-xl transition duration-200"
           >
             Try Again
           </button>
@@ -235,33 +221,20 @@ const UserSubmissions = () => {
   // Empty state
   if (submissions.length === 0) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-6">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
-          <div className="flex items-center justify-center mb-4">
-            <svg
-              className="w-16 h-16 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
+      <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center p-6 font-sans text-neutral-900">
+        <div className="bg-white border border-neutral-200 rounded-3xl p-12 max-w-md w-full text-center shadow-xs">
+          <div className="w-16 h-16 bg-neutral-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-neutral-400 border border-neutral-100">
+            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">
-            No Submissions Yet
-          </h3>
-          <p className="text-gray-600 mb-6">
-            You haven't submitted any forms. Get started by filling out a civic
-            service form.
+          <h3 className="text-xl font-semibold text-neutral-900 mb-2">No Submissions Yet</h3>
+          <p className="text-neutral-500 mb-8 leading-relaxed">
+            You haven't submitted any forms. Get started by filling out a civic service form.
           </p>
           <a
             href="/service-forms"
-            className="inline-block bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200"
+            className="inline-block w-full bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-3 px-6 rounded-xl transition duration-200"
           >
             Browse Forms
           </a>
@@ -272,56 +245,42 @@ const UserSubmissions = () => {
 
   // Main submissions list
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
+    <div className="min-h-screen bg-neutral-50/50 py-12 px-4 sm:px-6 lg:px-8 font-sans text-neutral-900">
       <div className="max-w-6xl mx-auto">
-        {/* Header with Sync Button */}
-        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
-            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 mb-2">
+            <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 mb-2 font-display">
               My Submissions
             </h1>
-            <p className="text-gray-600">
-              {submissions.length} submission
-              {submissions.length !== 1 ? "s" : ""} saved locally
+            <p className="text-neutral-500">
+              {submissions.length} submission{submissions.length !== 1 ? "s" : ""} saved locally
             </p>
           </div>
 
-          {/* Sync Button */}
           <button
             onClick={handleSync}
             disabled={syncing}
-            className="bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2"
+            className="bg-neutral-900 hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-xs"
           >
             {syncing ? (
               <>
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                Syncing...
+                <span>Syncing...</span>
               </>
             ) : (
               <>
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                  />
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                Sync to Backend
+                <span>Sync to Backend</span>
               </>
             )}
           </button>
         </div>
 
-        {/* Sync Status Message */}
         {syncMessage && (
           <div
-            className={`mb-6 p-4 rounded-lg border ${
+            className={`mb-8 p-4 rounded-xl border ${
               syncMessage.type === "success"
                 ? "bg-green-50 border-green-200 text-green-800"
                 : "bg-red-50 border-red-200 text-red-800"
@@ -335,64 +294,47 @@ const UserSubmissions = () => {
           {submissions.map((submission) => (
             <div
               key={submission.submissionId}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden"
+              className="bg-white border border-neutral-200 rounded-2xl overflow-hidden shadow-xs hover:border-neutral-300 transition-colors flex flex-col"
             >
-              <div className="bg-linear-to-r from-indigo-500 to-purple-500 p-4">
-                <h3 className="text-white font-semibold text-lg truncate">
+              <div className="bg-neutral-50 border-b border-neutral-100 p-5">
+                <h3 className="text-neutral-900 font-semibold text-lg truncate mb-1">
                   {submission.formTitle || "Untitled Form"}
                 </h3>
-                <p className="text-indigo-100 text-sm">
-                  Form ID: {submission.formId}
+                <p className="text-neutral-500 text-xs font-mono">
+                  ID: {submission.formId}
                 </p>
               </div>
 
-              <div className="p-4">
-                <div className="mb-4 space-y-2">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
+              <div className="p-5 grow flex flex-col">
+                <div className="mb-5 space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-neutral-600">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span>{formatDate(submission.submittedAt)}</span>
                   </div>
-
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center">
                     {getSyncStatusBadge(submission)}
                   </div>
                 </div>
 
-                <div className="border-t pt-4 space-y-1">
-                  <p className="text-xs text-gray-500 uppercase font-semibold mb-2">
-                    Form Data:
+                <div className="border-t border-neutral-100 pt-4 mb-6 space-y-2 grow">
+                  <p className="text-xs text-neutral-400 uppercase tracking-wider font-semibold mb-3">
+                    Form Data
                   </p>
                   {Object.entries(submission.formData || {})
                     .slice(0, 3)
                     .map(([key, value]) => (
-                      <div key={key} className="text-sm">
-                        <span className="text-gray-600 font-medium">
-                          {key}:
-                        </span>{" "}
-                        <span className="text-gray-800">
-                          {String(value).substring(0, 30)}
-                          {String(value).length > 30 ? "..." : ""}
+                      <div key={key} className="text-sm flex justify-between gap-4">
+                        <span className="text-neutral-500 truncate min-w-0">{key}:</span>
+                        <span className="text-neutral-900 font-medium truncate min-w-0">
+                          {String(value)}
                         </span>
                       </div>
                     ))}
                   {Object.keys(submission.formData || {}).length > 3 && (
-                    <p className="text-xs text-gray-500 italic">
-                      +{Object.keys(submission.formData).length - 3} more field
-                      {Object.keys(submission.formData).length - 3 !== 1
-                        ? "s"
-                        : ""}
+                    <p className="text-xs text-neutral-400 italic pt-2">
+                      +{Object.keys(submission.formData).length - 3} more field{Object.keys(submission.formData).length - 3 !== 1 ? "s" : ""}
                     </p>
                   )}
                 </div>
@@ -400,7 +342,7 @@ const UserSubmissions = () => {
                 <button
                   onClick={() => handleDelete(submission.submissionId)}
                   disabled={deletingId === submission.submissionId}
-                  className="mt-4 w-full bg-red-50 hover:bg-red-100 text-red-600 font-medium py-2 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-white hover:bg-red-50 text-red-600 font-medium py-2.5 px-4 rounded-xl border border-neutral-200 hover:border-red-200 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
                 >
                   {deletingId === submission.submissionId ? (
                     <>
@@ -409,20 +351,10 @@ const UserSubmissions = () => {
                     </>
                   ) : (
                     <>
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        />
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                       </svg>
-                      Delete
+                      Delete Submission
                     </>
                   )}
                 </button>

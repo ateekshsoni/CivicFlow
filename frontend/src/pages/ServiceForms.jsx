@@ -65,14 +65,12 @@ const ServiceForms = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+      <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center p-6 font-sans text-neutral-900">
+        <div className="bg-white border border-neutral-200 rounded-3xl p-8 max-w-md w-full text-center shadow-xs">
           <div className="flex justify-center mb-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-neutral-900"></div>
           </div>
-          <p className="text-gray-600 font-medium">
-            Loading available forms...
-          </p>
+          <p className="text-neutral-500 font-medium">Loading available forms...</p>
         </div>
       </div>
     );
@@ -81,149 +79,92 @@ const ServiceForms = () => {
   // Error state
   if (error) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
-          <div className="flex justify-center mb-4">
-            <svg
-              className="w-12 h-12 text-red-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
+      <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center p-6 font-sans text-neutral-900">
+        <div className="bg-white border border-neutral-200 rounded-3xl p-8 max-w-md w-full text-center shadow-xs">
+          <div className="flex justify-center mb-4 text-red-500">
+            <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">
-            Error Loading Forms
-          </h3>
-          <p className="text-red-600 text-sm">{error}</p>
+          <h3 className="text-lg font-semibold text-neutral-900 mb-2">Error Loading Forms</h3>
+          <p className="text-neutral-500 text-sm">{error}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-neutral-50/50 py-12 px-4 sm:px-6 lg:px-8 font-sans text-neutral-900">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 mb-4 font-display">
             Available Service Forms
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Choose from our collection of civic service forms. Quick, easy, and
-            secure.
+          <p className="text-lg text-neutral-500 max-w-2xl mx-auto">
+            Choose from our collection of civic service forms. Designed for resilience.
           </p>
-          {/* Show cache indicator if data is from cache */}
           {isCached && (
-            <div className="mt-4 inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full">
+            <div className="mt-4 inline-flex items-center px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-full shadow-xs">
               <span className="text-yellow-700 font-medium text-sm">
                 📦 Viewing cached data (offline mode)
               </span>
             </div>
           )}
-          {/* Show forms count */}
           {formsData?.count !== undefined && (
-            <div className="mt-4 inline-flex items-center px-4 py-2 bg-indigo-100 rounded-full">
-              <span className="text-indigo-700 font-semibold">
-                {formsData.count} Form{formsData.count !== 1 ? "s" : ""}{" "}
-                Available
+            <div className="mt-4 ml-2 inline-flex items-center px-4 py-2 bg-neutral-100 border border-neutral-200 rounded-full shadow-xs">
+              <span className="text-neutral-700 font-medium text-sm">
+                {formsData.count} Form{formsData.count !== 1 ? "s" : ""} Available
               </span>
             </div>
           )}
         </div>
 
-        {/* Forms Grid */}
         {formsData?.forms?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {formsData.forms.map((form) => (
               <div
                 key={form.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col transform hover:-translate-y-1"
+                className="group relative flex flex-col justify-between p-6 bg-white border border-neutral-200 hover:border-neutral-300 rounded-2xl transition-all duration-300 hover:shadow-xs overflow-hidden"
               >
-                {/* Form Icon/Badge */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="bg-linear-to-br from-indigo-500 to-purple-500 rounded-lg p-3">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-12 h-12 bg-neutral-100 border border-neutral-200/60 rounded-xl flex items-center justify-center text-neutral-600">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
                   {form.fieldCount && (
-                    <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
+                    <span className="bg-neutral-50 border border-neutral-200 text-neutral-600 text-xs font-medium px-3 py-1 rounded-full">
                       {form.fieldCount} field{form.fieldCount !== 1 ? "s" : ""}
                     </span>
                   )}
                 </div>
 
-                {/* Form Content */}
-                <h2 className="text-xl font-bold text-gray-800 mb-2">
-                  {form.title}
-                </h2>
-                <p className="text-gray-600 text-sm mb-6 grow">
-                  {form.description}
-                </p>
+                <div className="grow">
+                  <h2 className="text-xl font-semibold text-neutral-900 mb-2">{form.title}</h2>
+                  <p className="text-neutral-500 text-sm mb-6 leading-relaxed">{form.description}</p>
+                </div>
 
-                {/* Action Button */}
                 <Link
                   to={`/forms/${form.id}`}
-                  className="w-full bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform transition duration-200 text-center flex items-center justify-center gap-2"
+                  className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-3 px-6 rounded-xl transition duration-200 text-center flex items-center justify-center gap-2"
                 >
                   <span>Fill Out Form</span>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </Link>
               </div>
             ))}
           </div>
         ) : (
-          // Empty state
-          <div className="bg-white rounded-2xl shadow-xl p-12 text-center max-w-md mx-auto">
-            <svg
-              className="w-16 h-16 text-gray-400 mx-auto mb-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              No Forms Available
-            </h3>
-            <p className="text-gray-600">
-              There are no forms available at the moment. Please check back
-              later.
-            </p>
+          <div className="bg-white border border-neutral-200 rounded-3xl p-12 text-center max-w-md mx-auto shadow-xs">
+            <div className="w-16 h-16 bg-neutral-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-neutral-400 border border-neutral-100">
+              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-neutral-900 mb-2">No Forms Available</h3>
+            <p className="text-neutral-500">Check back later for new services.</p>
           </div>
         )}
       </div>

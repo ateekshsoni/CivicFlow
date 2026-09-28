@@ -45,134 +45,94 @@ const HomePage = () => {
   };
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-6">
-        <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 mb-4">
-              Welcome to CivicFlow
-            </h1>
-            <p className="text-gray-600 text-lg">
-              Your Civic Engagement Platform
-            </p>
-          </div>
-
-          {/* Your Submissions Section */}
-          <Link
-            to="/user-submissions"
-            className="block mb-6 bg-linear-to-r from-indigo-500 to-purple-500 rounded-2xl p-6 hover:from-indigo-600 hover:to-purple-600 transform hover:scale-[1.02] transition duration-200 shadow-lg hover:shadow-xl group"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl group-hover:bg-white/30 transition">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                </div>
-                <div className="text-left">
-                  <h2 className="text-xl font-bold text-white mb-1">
-                    Your Submissions
-                  </h2>
-                  <p className="text-indigo-100 text-sm">
-                    View and manage your form submissions
-                  </p>
-                </div>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm p-2 rounded-lg group-hover:bg-white/30 group-hover:translate-x-1 transition">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
+      <div className="min-h-screen bg-neutral-50/50 flex items-center justify-center p-6 font-sans text-neutral-900">
+        <div className="w-full max-w-3xl bg-white/70 backdrop-blur-xl border border-neutral-200/60 rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center p-3 bg-neutral-100 rounded-2xl mb-6 shadow-xs border border-neutral-200/50">
+              <svg className="w-8 h-8 text-neutral-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
             </div>
-          </Link>
-
-          <div className="bg-linear-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 mb-6">
-            <p className="text-sm font-medium text-gray-700 mb-3">
-              Backend Connection Status
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 mb-4 font-display">
+              CivicFlow
+            </h1>
+            <p className="text-neutral-500 text-lg max-w-lg mx-auto leading-relaxed">
+              Resilient digital infrastructure for critical public services. Built to work even when the internet doesn't.
             </p>
-            <button
-              onClick={checkBackendStatus}
-              disabled={isCheckingStatus}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isCheckingStatus ? "Checking..." : "Check Backend Status"}
-            </button>
-
-            {backendStatus === "connected" && (
-              <div className="mt-4 flex items-center justify-center gap-2 text-green-700 bg-green-100 py-3 px-4 rounded-lg">
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="font-semibold">
-                  Backend Status: Connected ✓
-                </span>
-              </div>
-            )}
-
-            {backendStatus === "disconnected" && (
-              <div className="mt-4 flex items-center justify-center gap-2 text-red-700 bg-red-100 py-3 px-4 rounded-lg">
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="font-semibold">
-                  Backend Status: Disconnected ✗
-                </span>
-              </div>
-            )}
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
-              Quick Actions
-            </h2>
-            <Link
-              to="/sample-form"
-              className="block w-full bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 text-center"
-            >
-              📝 Open Sample Form
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            {/* Action 1 */}
             <Link
               to="/service-forms"
-              className="block w-full bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 text-center"
+              className="group relative flex flex-col justify-between p-6 bg-white border border-neutral-200 hover:border-neutral-300 rounded-2xl transition-all duration-300 hover:shadow-xs overflow-hidden"
             >
-              📝 Check Sample Service Form
+              <div className="absolute top-0 right-0 p-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+                <svg className="w-5 h-5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+              <div className="w-12 h-12 bg-neutral-100 border border-neutral-200/60 rounded-xl flex items-center justify-center mb-6 text-neutral-600">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-neutral-900 mb-1">Service Forms</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">Browse and apply for available government services.</p>
+              </div>
+            </Link>
+
+            {/* Action 2 */}
+            <Link
+              to="/user-submissions"
+              className="group relative flex flex-col justify-between p-6 bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 rounded-2xl transition-all duration-300 hover:shadow-xs overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 p-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+                <svg className="w-5 h-5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+              <div className="w-12 h-12 bg-neutral-800 rounded-xl flex items-center justify-center mb-6 text-neutral-300 border border-neutral-700/50">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-1">Your Submissions</h3>
+                <p className="text-sm text-neutral-400 leading-relaxed">Track progress and auto-sync offline drafts.</p>
+              </div>
             </Link>
           </div>
+
+          {/* Backend Status Minimal */}
+          <div className="flex items-center justify-between p-4 bg-white border border-neutral-200 rounded-2xl shadow-xs transition-colors">
+            <div className="flex items-center gap-3">
+              <div className="relative flex h-3 w-3">
+                {backendStatus === "connected" && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>}
+                <span className={`relative inline-flex rounded-full h-3 w-3 ${
+                  backendStatus === "connected" ? 'bg-emerald-500' 
+                  : backendStatus === "disconnected" ? 'bg-red-500' 
+                  : 'bg-neutral-300'
+                }`}></span>
+              </div>
+              <span className="text-sm font-medium text-neutral-700">
+                {isCheckingStatus ? "Checking Systems..." 
+                 : backendStatus === "connected" ? "Systems Operational" 
+                 : backendStatus === "disconnected" ? "Systems Offline (Mocking Failures)" 
+                 : "Status Unknown"}
+              </span>
+            </div>
+            <button 
+              onClick={checkBackendStatus}
+              disabled={isCheckingStatus}
+              className="text-xs font-semibold text-neutral-500 hover:text-neutral-900 transition-colors disabled:opacity-50 px-3 py-1.5 bg-neutral-100 hover:bg-neutral-200 rounded-lg"
+            >
+              Refresh Status
+            </button>
+          </div>
+          
         </div>
       </div>
     </>
