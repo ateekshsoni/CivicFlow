@@ -1,137 +1,337 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CivicFlow — Offline-First Reliability Layer for Public Service Forms (MVP)</title>
-  <meta name="description" content="CivicFlow is an offline-first PWA reliability layer that stops citizens losing form data when connections drop or legacy government portals time out." />
-  <link rel="icon" href="frontend/public/favicon.svg" type="image/svg+xml" />
-  <!-- Tailwind Play CDN: officially "for development purposes only" — acceptable for a pitch/MVP page. -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      CivicFlow — Offline-First Reliability Layer for Public Service Forms (MVP)
+    </title>
+    <meta
+      name="description"
+      content="CivicFlow is an offline-first PWA reliability layer that stops citizens losing form data when connections drop or legacy government portals time out."
+    />
+    <link rel="icon" href="frontend/public/favicon.svg" type="image/svg+xml" />
+    <!-- Tailwind Play CDN: officially "for development purposes only" — acceptable for a pitch/MVP page. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
 
-<body class="bg-white text-black antialiased selection:bg-orange-600 selection:text-black">
-
-  <!-- Skip link (keyboard / screen-reader users) -->
-  <a href="#main"
-     class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 border-2 border-black bg-orange-600 px-4 py-2 font-mono text-sm font-bold text-black focus:outline-2 focus:outline-offset-2 focus:outline-black">
-    Skip to content
-  </a>
-
-  <!-- ============================================================ -->
-  <!-- NAV                                                          -->
-  <!-- ============================================================ -->
-  <header class="sticky top-0 z-40 border-b-2 border-black bg-white">
-    <nav aria-label="Primary" class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-8">
-      <a href="#problem" class="flex items-center gap-2 font-black tracking-tight focus:outline-2 focus:outline-offset-2 focus:outline-black">
-        <span aria-hidden="true" class="inline-block h-5 w-5 border-2 border-black bg-orange-600"></span>
-        <span class="text-xl">CIVICFLOW</span>
-        <span class="border-2 border-black px-1.5 font-mono text-[10px] font-bold">MVP</span>
-      </a>
-      <ul class="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 font-mono text-xs font-bold uppercase md:mx-0 md:px-0 md:pb-0">
-        <li><a href="#problem" class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black">01 Problem</a></li>
-        <li><a href="#architecture" class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black">02 Architecture</a></li>
-        <li><a href="#comparison" class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black">03 Comparison</a></li>
-        <li><a href="#landscape" class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black">04 Landscape</a></li>
-        <li><a href="#stack" class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black">05 Stack</a></li>
-        <li><a href="#concepts" class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black">06 Concepts</a></li>
-        <li><a href="#success" class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black">07 Success</a></li>
-        <li><a href="#sdk" class="block whitespace-nowrap border-2 border-black bg-orange-600 px-2 py-1 text-black focus:outline-2 focus:outline-offset-2 focus:outline-black">08 SDK</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main id="main">
+  <body
+    class="bg-white text-black antialiased selection:bg-orange-600 selection:text-black"
+  >
+    <!-- Skip link (keyboard / screen-reader users) -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 border-2 border-black bg-orange-600 px-4 py-2 font-mono text-sm font-bold text-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+    >
+      Skip to content
+    </a>
 
     <!-- ============================================================ -->
-    <!-- 01 HERO & PROBLEM                                            -->
+    <!-- NAV                                                          -->
     <!-- ============================================================ -->
-    <section id="problem" aria-labelledby="hero-title" class="scroll-mt-28 border-b-2 border-black">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-6 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>01 / Problem
-        </p>
+    <header class="sticky top-0 z-40 border-b-2 border-black bg-white">
+      <nav
+        aria-label="Primary"
+        class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-8"
+      >
+        <a
+          href="#problem"
+          class="flex items-center gap-2 font-black tracking-tight focus:outline-2 focus:outline-offset-2 focus:outline-black"
+        >
+          <span
+            aria-hidden="true"
+            class="inline-block h-5 w-5 border-2 border-black bg-orange-600"
+          ></span>
+          <span class="text-xl">CIVICFLOW</span>
+          <span
+            class="border-2 border-black px-1.5 font-mono text-[10px] font-bold"
+            >MVP</span
+          >
+        </a>
+        <ul
+          class="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 font-mono text-xs font-bold uppercase md:mx-0 md:px-0 md:pb-0"
+        >
+          <li>
+            <a
+              href="#problem"
+              class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >01 Problem</a
+            >
+          </li>
+          <li>
+            <a
+              href="#architecture"
+              class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >02 Architecture</a
+            >
+          </li>
+          <li>
+            <a
+              href="#comparison"
+              class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >03 Comparison</a
+            >
+          </li>
+          <li>
+            <a
+              href="#landscape"
+              class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >04 Landscape</a
+            >
+          </li>
+          <li>
+            <a
+              href="#stack"
+              class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >05 Stack</a
+            >
+          </li>
+          <li>
+            <a
+              href="#concepts"
+              class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >06 Concepts</a
+            >
+          </li>
+          <li>
+            <a
+              href="#success"
+              class="block whitespace-nowrap border-2 border-transparent px-2 py-1 hover:border-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >07 Success</a
+            >
+          </li>
+          <li>
+            <a
+              href="#sdk"
+              class="block whitespace-nowrap border-2 border-black bg-orange-600 px-2 py-1 text-black focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >08 SDK</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-        <h1 id="hero-title" class="max-w-5xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl md:text-7xl">
-          Government downtime should not become
-          <span class="bg-orange-600 px-2 text-black [box-decoration-break:clone]">citizen data loss.</span>
-        </h1>
+    <main id="main">
+      <!-- ============================================================ -->
+      <!-- 01 HERO & PROBLEM                                            -->
+      <!-- ============================================================ -->
+      <section
+        id="problem"
+        aria-labelledby="hero-title"
+        class="scroll-mt-28 border-b-2 border-black"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-6 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >01 / Problem
+          </p>
 
-        <p class="mt-8 max-w-3xl text-lg md:text-xl">
-          CivicFlow is an offline-first reliability layer, a <strong>"shock absorber"</strong>, that sits between citizens and fragile
-          government portals. It encrypts work-in-progress on the device, then syncs it automatically when the network comes back.
-        </p>
+          <h1
+            id="hero-title"
+            class="max-w-5xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl md:text-7xl"
+          >
+            Government downtime should not become
+            <span
+              class="bg-orange-600 px-2 text-black [box-decoration-break:clone]"
+              >citizen data loss.</span
+            >
+          </h1>
 
-        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a href="#architecture"
-             class="inline-flex items-center justify-center border-2 border-black bg-orange-600 px-6 py-3 font-mono text-sm font-bold uppercase text-black shadow-[4px_4px_0_0_#000] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] focus:outline-2 focus:outline-offset-2 focus:outline-black">
-            See the sync loop &rarr;
-          </a>
-          <a href="#sdk"
-             class="inline-flex items-center justify-center border-2 border-black bg-white px-6 py-3 font-mono text-sm font-bold uppercase text-black shadow-[4px_4px_0_0_#000] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] focus:outline-2 focus:outline-offset-2 focus:outline-black">
-            View SDK integration
-          </a>
+          <p class="mt-8 max-w-3xl text-lg md:text-xl">
+            CivicFlow is an offline-first reliability layer, a
+            <strong>"shock absorber"</strong>, that sits between citizens and
+            fragile government portals. It encrypts work-in-progress on the
+            device, then syncs it automatically when the network comes back.
+          </p>
+
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#architecture"
+              class="inline-flex items-center justify-center border-2 border-black bg-orange-600 px-6 py-3 font-mono text-sm font-bold uppercase text-black shadow-[4px_4px_0_0_#000] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] focus:outline-2 focus:outline-offset-2 focus:outline-black"
+            >
+              See the sync loop &rarr;
+            </a>
+            <a
+              href="#sdk"
+              class="inline-flex items-center justify-center border-2 border-black bg-white px-6 py-3 font-mono text-sm font-bold uppercase text-black shadow-[4px_4px_0_0_#000] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] focus:outline-2 focus:outline-offset-2 focus:outline-black"
+            >
+              View SDK integration
+            </a>
+          </div>
+
+          <!-- Problem / Solution cards -->
+          <div class="mt-16 grid gap-8 md:grid-cols-2">
+            <article
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000] md:p-8"
+            >
+              <p class="font-mono text-xs font-bold uppercase tracking-widest">
+                The problem
+              </p>
+              <h2 class="mt-3 text-2xl font-black md:text-3xl">
+                Legacy portals assume perfect internet.
+              </h2>
+              <ul class="mt-6 space-y-3 text-base">
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-black"
+                  ></span
+                  ><span
+                    >Citizens spend <strong>30–45 minutes</strong> filling forms
+                    and uploading documents.</span
+                  >
+                </li>
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-black"
+                  ></span
+                  ><span
+                    >One dropped connection, session timeout, or deadline-day
+                    server crash <strong>wipes everything</strong>.</span
+                  >
+                </li>
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-black"
+                  ></span
+                  ><span
+                    >The citizen starts over. Support centres flood. Public
+                    trust drops.</span
+                  >
+                </li>
+              </ul>
+            </article>
+
+            <article
+              class="border-2 border-black border-t-8 border-t-orange-600 bg-white p-6 shadow-[6px_6px_0_0_#000] md:p-8"
+            >
+              <p class="font-mono text-xs font-bold uppercase tracking-widest">
+                The solution
+              </p>
+              <h2 class="mt-3 text-2xl font-black md:text-3xl">
+                Offline-caching middleware. No rip-and-replace.
+              </h2>
+              <ul class="mt-6 space-y-3 text-base">
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-orange-600"
+                  ></span
+                  ><span
+                    ><strong>Encrypt &amp; cache on-device</strong> (Service
+                    Worker + IndexedDB + AES-GCM).</span
+                  >
+                </li>
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-orange-600"
+                  ></span
+                  ><span
+                    ><strong>Auto-sync on reconnect</strong>, with idempotent
+                    retries so nothing is sent twice.</span
+                  >
+                </li>
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-orange-600"
+                  ></span
+                  ><span
+                    ><strong>Adapter to existing gov APIs</strong> (REST/SOAP).
+                    The government keeps its backend.</span
+                  >
+                </li>
+              </ul>
+            </article>
+          </div>
+
+          <!-- Target stats (explicitly targets, not achieved numbers) -->
+          <dl
+            class="mt-12 grid grid-cols-1 border-2 border-black sm:grid-cols-3"
+          >
+            <div
+              class="border-b-2 border-black p-6 sm:border-b-0 sm:border-r-2"
+            >
+              <dt class="font-mono text-xs font-bold uppercase tracking-widest">
+                Target
+              </dt>
+              <dd class="mt-2 text-3xl font-black">0 bytes lost</dd>
+            </div>
+            <div
+              class="border-b-2 border-black p-6 sm:border-b-0 sm:border-r-2"
+            >
+              <dt class="font-mono text-xs font-bold uppercase tracking-widest">
+                Mode
+              </dt>
+              <dd class="mt-2 text-3xl font-black">Offline-first</dd>
+            </div>
+            <div class="p-6">
+              <dt class="font-mono text-xs font-bold uppercase tracking-widest">
+                Deployment
+              </dt>
+              <dd class="mt-2 text-3xl font-black">On-prem ready</dd>
+            </div>
+          </dl>
+          <p class="mt-3 font-mono text-xs">
+            * MVP targets, not measured results. See
+            <a
+              href="#success"
+              class="underline decoration-2 underline-offset-2 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+              >07 / Success Criteria</a
+            >.
+          </p>
         </div>
+      </section>
 
-        <!-- Problem / Solution cards -->
-        <div class="mt-16 grid gap-8 md:grid-cols-2">
-          <article class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000] md:p-8">
-            <p class="font-mono text-xs font-bold uppercase tracking-widest">The problem</p>
-            <h2 class="mt-3 text-2xl font-black md:text-3xl">Legacy portals assume perfect internet.</h2>
-            <ul class="mt-6 space-y-3 text-base">
-              <li class="flex gap-3"><span aria-hidden="true" class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-black"></span><span>Citizens spend <strong>30–45 minutes</strong> filling forms and uploading documents.</span></li>
-              <li class="flex gap-3"><span aria-hidden="true" class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-black"></span><span>One dropped connection, session timeout, or deadline-day server crash <strong>wipes everything</strong>.</span></li>
-              <li class="flex gap-3"><span aria-hidden="true" class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-black"></span><span>The citizen starts over. Support centres flood. Public trust drops.</span></li>
-            </ul>
-          </article>
+      <!-- ============================================================ -->
+      <!-- 02 ARCHITECTURE                                              -->
+      <!-- ============================================================ -->
+      <section
+        id="architecture"
+        aria-labelledby="arch-title"
+        class="scroll-mt-28 border-b-2 border-black"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >02 / Architecture
+          </p>
+          <h2
+            id="arch-title"
+            class="text-3xl font-black tracking-tight md:text-5xl"
+          >
+            The offline-sync loop.
+          </h2>
+          <p class="mt-4 max-w-3xl text-lg">
+            Six steps from keystroke to government record. The orange nodes are
+            the network events CivicFlow absorbs.
+          </p>
 
-          <article class="border-2 border-black border-t-8 border-t-orange-600 bg-white p-6 shadow-[6px_6px_0_0_#000] md:p-8">
-            <p class="font-mono text-xs font-bold uppercase tracking-widest">The solution</p>
-            <h2 class="mt-3 text-2xl font-black md:text-3xl">Offline-caching middleware. No rip-and-replace.</h2>
-            <ul class="mt-6 space-y-3 text-base">
-              <li class="flex gap-3"><span aria-hidden="true" class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-orange-600"></span><span><strong>Encrypt &amp; cache on-device</strong> (Service Worker + IndexedDB + AES-GCM).</span></li>
-              <li class="flex gap-3"><span aria-hidden="true" class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-orange-600"></span><span><strong>Auto-sync on reconnect</strong>, with idempotent retries so nothing is sent twice.</span></li>
-              <li class="flex gap-3"><span aria-hidden="true" class="mt-1.5 inline-block h-2.5 w-2.5 shrink-0 bg-orange-600"></span><span><strong>Adapter to existing gov APIs</strong> (REST/SOAP). The government keeps its backend.</span></li>
-            </ul>
-          </article>
-        </div>
-
-        <!-- Target stats (explicitly targets, not achieved numbers) -->
-        <dl class="mt-12 grid grid-cols-1 border-2 border-black sm:grid-cols-3">
-          <div class="border-b-2 border-black p-6 sm:border-b-0 sm:border-r-2">
-            <dt class="font-mono text-xs font-bold uppercase tracking-widest">Target</dt>
-            <dd class="mt-2 text-3xl font-black">0 bytes lost</dd>
-          </div>
-          <div class="border-b-2 border-black p-6 sm:border-b-0 sm:border-r-2">
-            <dt class="font-mono text-xs font-bold uppercase tracking-widest">Mode</dt>
-            <dd class="mt-2 text-3xl font-black">Offline-first</dd>
-          </div>
-          <div class="p-6">
-            <dt class="font-mono text-xs font-bold uppercase tracking-widest">Deployment</dt>
-            <dd class="mt-2 text-3xl font-black">On-prem ready</dd>
-          </div>
-        </dl>
-        <p class="mt-3 font-mono text-xs">* MVP targets, not measured results. See <a href="#success" class="underline decoration-2 underline-offset-2 focus:outline-2 focus:outline-offset-2 focus:outline-black">07 / Success Criteria</a>.</p>
-      </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 02 ARCHITECTURE                                              -->
-    <!-- ============================================================ -->
-    <section id="architecture" aria-labelledby="arch-title" class="scroll-mt-28 border-b-2 border-black">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>02 / Architecture
-        </p>
-        <h2 id="arch-title" class="text-3xl font-black tracking-tight md:text-5xl">The offline-sync loop.</h2>
-        <p class="mt-4 max-w-3xl text-lg">Six steps from keystroke to government record. The orange nodes are the network events CivicFlow absorbs.</p>
-
-        <div class="mt-10 grid gap-8 lg:grid-cols-3">
-          <figure class="min-w-0 border-2 border-black bg-white shadow-[6px_6px_0_0_#000] lg:col-span-2">
-            <figcaption class="border-b-2 border-black px-4 py-2 font-mono text-xs font-bold uppercase">Fig. 1 — Data custody flow (graph TD)</figcaption>
-            <div class="overflow-x-auto p-4 md:p-8">
-              <div class="min-w-130">
-<pre class="mermaid">
+          <div class="mt-10 grid gap-8 lg:grid-cols-3">
+            <figure
+              class="min-w-0 border-2 border-black bg-white shadow-[6px_6px_0_0_#000] lg:col-span-2"
+            >
+              <figcaption
+                class="border-b-2 border-black px-4 py-2 font-mono text-xs font-bold uppercase"
+              >
+                Fig. 1 — Data custody flow (graph TD)
+              </figcaption>
+              <div class="overflow-x-auto p-4 md:p-8">
+                <div class="min-w-130">
+                  <pre class="mermaid">
 graph TD
   A["1. Citizen fills out form (Next.js UI)"] --> B["2. Network connection drops"]
   B --> C["3. Payload encrypted with AES-GCM and cached locally via Service Worker + IndexedDB"]
@@ -145,509 +345,1372 @@ graph TD
   class A,C,E,F step
   class B,D net
   class G fallback
-</pre>
+</pre
+                  >
+                </div>
+                <noscript>
+                  <ol class="list-decimal space-y-1 pl-6 font-mono text-sm">
+                    <li>Citizen fills out form (Next.js UI).</li>
+                    <li>Network connection drops.</li>
+                    <li>
+                      Payload encrypted (AES-GCM) and cached locally via Service
+                      Worker + IndexedDB.
+                    </li>
+                    <li>Network is restored.</li>
+                    <li>
+                      Background Sync API pushes payload to Express server
+                      (fallback: retry on <code>online</code> event / app reopen
+                      in Safari &amp; Firefox).
+                    </li>
+                    <li>
+                      Data stored securely in MongoDB and forwarded to the
+                      Government API.
+                    </li>
+                  </ol>
+                </noscript>
               </div>
-              <noscript>
-                <ol class="list-decimal space-y-1 pl-6 font-mono text-sm">
-                  <li>Citizen fills out form (Next.js UI).</li>
-                  <li>Network connection drops.</li>
-                  <li>Payload encrypted (AES-GCM) and cached locally via Service Worker + IndexedDB.</li>
-                  <li>Network is restored.</li>
-                  <li>Background Sync API pushes payload to Express server (fallback: retry on <code>online</code> event / app reopen in Safari &amp; Firefox).</li>
-                  <li>Data stored securely in MongoDB and forwarded to the Government API.</li>
-                </ol>
-              </noscript>
-            </div>
-          </figure>
+            </figure>
 
-          <div class="flex min-w-0 flex-col gap-8">
-            <div class="border-2 border-black border-l-8 border-l-orange-600 bg-white p-6 shadow-[6px_6px_0_0_#000]">
-              <h3 class="font-mono text-xs font-bold uppercase tracking-widest">Data custody, in two sentences</h3>
-              <p class="mt-4 text-base leading-relaxed">
-                The payload is encrypted with a device-held, non-extractable AES-GCM key before it ever touches IndexedDB, so data at rest on the citizen's device is never stored in plain text.
-                On reconnect the Service Worker replays the queue to Express with an idempotency key, and the local copy is deleted only after MongoDB persists it and the Government API acknowledges receipt.
-              </p>
-            </div>
-            <div class="border-2 border-black bg-white p-6">
-              <h3 class="font-mono text-xs font-bold uppercase tracking-widest">Browser reality check</h3>
-              <p class="mt-4 text-sm leading-relaxed">
-                The Background Sync API currently works only in Chromium browsers (Chrome, Edge, Opera, Samsung Internet, Chrome for Android). Safari, iOS Safari and Firefox don't support it.
-                CivicFlow falls back to replaying the queue on the <code class="border border-black px-1 font-mono">online</code> event or when the app reopens.
-              </p>
-              <p class="mt-3 text-sm leading-relaxed">
-                Encryption protects data at rest. It does <strong>not</strong> protect against someone using an unlocked, compromised device.
-              </p>
+            <div class="flex min-w-0 flex-col gap-8">
+              <div
+                class="border-2 border-black border-l-8 border-l-orange-600 bg-white p-6 shadow-[6px_6px_0_0_#000]"
+              >
+                <h3
+                  class="font-mono text-xs font-bold uppercase tracking-widest"
+                >
+                  Data custody, in two sentences
+                </h3>
+                <p class="mt-4 text-base leading-relaxed">
+                  The payload is encrypted with a device-held, non-extractable
+                  AES-GCM key before it ever touches IndexedDB, so data at rest
+                  on the citizen's device is never stored in plain text. On
+                  reconnect the Service Worker replays the queue to Express with
+                  an idempotency key, and the local copy is deleted only after
+                  MongoDB persists it and the Government API acknowledges
+                  receipt.
+                </p>
+              </div>
+              <div class="border-2 border-black bg-white p-6">
+                <h3
+                  class="font-mono text-xs font-bold uppercase tracking-widest"
+                >
+                  Browser reality check
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed">
+                  The Background Sync API currently works only in Chromium
+                  browsers (Chrome, Edge, Opera, Samsung Internet, Chrome for
+                  Android). Safari, iOS Safari and Firefox don't support it.
+                  CivicFlow falls back to replaying the queue on the
+                  <code class="border border-black px-1 font-mono">online</code>
+                  event or when the app reopens.
+                </p>
+                <p class="mt-3 text-sm leading-relaxed">
+                  Encryption protects data at rest. It does
+                  <strong>not</strong> protect against someone using an
+                  unlocked, compromised device.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================================================ -->
-    <!-- 03 COMPARISON                                                -->
-    <!-- ============================================================ -->
-    <section id="comparison" aria-labelledby="cmp-title" class="scroll-mt-28 border-b-2 border-black">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>03 / Comparison
-        </p>
-        <h2 id="cmp-title" class="text-3xl font-black tracking-tight md:text-5xl">CivicFlow vs. legacy portals.</h2>
-
-        <div class="mt-10 overflow-x-auto border-2 border-black shadow-[6px_6px_0_0_#000]">
-          <table class="w-full min-w-160 border-collapse text-left">
-            <caption class="border-b-2 border-black bg-white px-4 py-3 text-left font-mono text-xs font-bold uppercase">
-              Table 1 — Reliability, offline, custody and integration
-            </caption>
-            <thead class="bg-black text-white">
-              <tr>
-                <th scope="col" class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest">Metric</th>
-                <th scope="col" class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest">
-                  <span class="inline-flex items-center gap-2"><span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>CivicFlow</span>
-                </th>
-                <th scope="col" class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest">Legacy Government Portals</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Data Reliability</th>
-                <td class="border-2 border-black p-4"><span class="font-bold">Guaranteed delivery</span>, queued on-device and retried until acknowledged.</td>
-                <td class="border-2 border-black p-4">Session timeouts. Unsaved work is lost.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Offline Capability</th>
-                <td class="border-2 border-black p-4"><span class="font-bold">Full offline caching</span>: keep typing with zero signal.</td>
-                <td class="border-2 border-black p-4">Requires persistent connection.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Security / Custody</th>
-                <td class="border-2 border-black p-4"><span class="font-bold">Local encryption prior to sync</span> (AES-GCM), wiped after server acknowledgement.</td>
-                <td class="border-2 border-black p-4">Vulnerable over-the-wire transfer.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Integration</th>
-                <td class="border-2 border-black p-4"><span class="font-bold">Lightweight PWA middleware</span> in front of existing APIs.</td>
-                <td class="border-2 border-black p-4">Expensive legacy overhauls.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 04 MARKET LANDSCAPE                                          -->
-    <!-- ============================================================ -->
-    <section id="landscape" aria-labelledby="land-title" class="scroll-mt-28 border-b-2 border-black">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>04 / Landscape
-        </p>
-        <h2 id="land-title" class="text-3xl font-black tracking-tight md:text-5xl">Who else is close, and where the gap is.</h2>
-        <p class="mt-4 max-w-3xl text-lg">
-          Researched from product sites and developer docs. Product Hunt search was attempted, but its results are rendered client-side and couldn't be read programmatically.
-        </p>
-
-        <ul class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <li class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <div class="flex items-start justify-between gap-3">
-              <h3 class="text-xl font-black">Form.io Offline Plugin</h3>
-              <span class="shrink-0 border-2 border-black bg-orange-600 px-1.5 font-mono text-[10px] font-bold uppercase">Closest</span>
-            </div>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div><dt class="font-mono text-xs font-bold uppercase">What it does</dt><dd>Queues submissions in IndexedDB (via PouchDB) and replays them first-in, first-out on reconnect.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Gap vs. CivicFlow</dt><dd>A paid, licensed add-on that only works on the Form.io platform. Its docs say login doesn't work offline. It doesn't sit in front of existing portals.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Category</dt><dd>Form platform add-on</dd></div>
-            </dl>
-          </li>
-
-          <li class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <h3 class="text-xl font-black">ODK</h3>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div><dt class="font-mono text-xs font-bold uppercase">What it does</dt><dd>Open-source offline data collection. 2M+ users and 250M+ submissions a year, synced automatically when online.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Gap vs. CivicFlow</dt><dd>Built for researchers and field teams collecting data, not for citizens applying to a government portal.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Category</dt><dd>Field data collection</dd></div>
-            </dl>
-          </li>
-
-          <li class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <h3 class="text-xl font-black">CommCare (Dimagi)</h3>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div><dt class="font-mono text-xs font-bold uppercase">What it does</dt><dd>Offline-first case management. SOC 2 and HIPAA compliant, 1M+ frontline workers in 130+ countries.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Gap vs. CivicFlow</dt><dd>Built for staff and health workers. It's a full platform, not middleware for an existing citizen portal.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Category</dt><dd>Frontline program platform</dd></div>
-            </dl>
-          </li>
-
-          <li class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <h3 class="text-xl font-black">PowerSync</h3>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div><dt class="font-mono text-xs font-bold uppercase">What it does</dt><dd>Sync engine that keeps a client-side SQLite database in sync with Postgres, MongoDB, MySQL or SQL Server.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Gap vs. CivicFlow</dt><dd>General developer infrastructure, with no form engine, government API adapter or citizen data-custody model.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Category</dt><dd>Sync engine (possible building block)</dd></div>
-            </dl>
-          </li>
-
-          <li class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <div class="flex items-start justify-between gap-3">
-              <h3 class="text-xl font-black">KoboToolbox</h3>
-              <span class="shrink-0 border-2 border-black px-1.5 font-mono text-[10px] font-bold uppercase">Not fetched</span>
-            </div>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div><dt class="font-mono text-xs font-bold uppercase">What it does</dt><dd>Offline survey collection used widely by NGOs and humanitarian teams.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Gap vs. CivicFlow</dt><dd>Survey tool for staff, not a reliability layer for citizen-facing portals.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Category</dt><dd>Humanitarian surveys</dd></div>
-            </dl>
-          </li>
-
-          <li class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <div class="flex items-start justify-between gap-3">
-              <h3 class="text-xl font-black">GOV.UK "save and return" / FormSG</h3>
-              <span class="shrink-0 border-2 border-black px-1.5 font-mono text-[10px] font-bold uppercase">Not fetched</span>
-            </div>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div><dt class="font-mono text-xs font-bold uppercase">What it does</dt><dd>Government-built form patterns and platforms that let citizens save drafts.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Gap vs. CivicFlow</dt><dd>Drafts are saved on the server, so the citizen still needs a working connection to save them.</dd></div>
-              <div><dt class="font-mono text-xs font-bold uppercase">Category</dt><dd>In-house gov form platforms</dd></div>
-            </dl>
-          </li>
-        </ul>
-
-        <!-- Why hasn't this been built -->
-        <div class="mt-16 border-2 border-black bg-white shadow-[6px_6px_0_0_#000]">
-          <h3 class="border-b-2 border-black bg-black px-6 py-4 text-xl font-black text-white md:text-2xl">Why hasn't this been built?</h3>
-          <ol class="divide-y-2 divide-black">
-            <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
-              <span class="font-mono text-2xl font-black">01</span>
-              <p><strong>Offline tools target field staff, not citizens.</strong> ODK, CommCare and Kobo serve trained workers on managed devices.</p>
-              <p class="text-sm"><span class="font-mono text-xs font-bold uppercase">CivicFlow's answer:</span> a citizen-facing PWA that needs no app-store install.</p>
-            </li>
-            <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
-              <span class="font-mono text-2xl font-black">02</span>
-              <p><strong>Vendors sell platforms, not middleware.</strong> Adopting them means migrating forms and data.</p>
-              <p class="text-sm"><span class="font-mono text-xs font-bold uppercase">CivicFlow's answer:</span> a drop-in adapter. No rip-and-replace of the government backend.</p>
-            </li>
-            <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
-              <span class="font-mono text-2xl font-black">03</span>
-              <p><strong>Background Sync is missing on iOS Safari and Firefox.</strong> "Automatic" sync breaks for a large share of phones.</p>
-              <p class="text-sm"><span class="font-mono text-xs font-bold uppercase">CivicFlow's answer:</span> replay the queue on the <code class="font-mono">online</code> event or when the app opens.</p>
-            </li>
-            <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
-              <span class="font-mono text-2xl font-black">04</span>
-              <p><strong>OTPs and session expiry don't work offline.</strong> Government login flows expect a live connection.</p>
-              <p class="text-sm"><span class="font-mono text-xs font-bold uppercase">CivicFlow's answer:</span> deferred authentication. Fill offline, then verify the OTP before final submission.</p>
-            </li>
-            <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
-              <span class="font-mono text-2xl font-black">05</span>
-              <p><strong>Legal grey zones.</strong> Is an offline timestamp valid for a deadline? Who is liable for data on the device?</p>
-              <p class="text-sm"><span class="font-mono text-xs font-bold uppercase">CivicFlow's answer:</span> cryptographic timestamps plus policy negotiation, with data encrypted and wiped after acknowledgement.</p>
-            </li>
-            <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
-              <span class="font-mono text-2xl font-black">06</span>
-              <p><strong>Legacy APIs aren't idempotent.</strong> Blind retries create duplicate applications.</p>
-              <p class="text-sm"><span class="font-mono text-xs font-bold uppercase">CivicFlow's answer:</span> an idempotency key per submission, deduplicated on the server before forwarding.</p>
-            </li>
-            <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
-              <span class="font-mono text-2xl font-black">07</span>
-              <p><strong>B2G sales take 12–24 months.</strong> System integrators hold the contracts.</p>
-              <p class="text-sm"><span class="font-mono text-xs font-bold uppercase">CivicFlow's answer:</span> B2B2G through integrators, starting with one municipal or university pilot.</p>
-            </li>
-          </ol>
-        </div>
-
-        <div class="mt-10 border-2 border-black border-l-8 border-l-orange-600 bg-white p-6 md:p-8">
-          <p class="font-mono text-xs font-bold uppercase tracking-widest">Positioning</p>
-          <p class="mt-3 text-xl font-black md:text-2xl">
-            The gap isn't "offline forms". It's a citizen-facing, drop-in reliability layer that sits in front of the portals governments already run.
+      <!-- ============================================================ -->
+      <!-- 03 COMPARISON                                                -->
+      <!-- ============================================================ -->
+      <section
+        id="comparison"
+        aria-labelledby="cmp-title"
+        class="scroll-mt-28 border-b-2 border-black"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >03 / Comparison
           </p>
-        </div>
-      </div>
-    </section>
+          <h2
+            id="cmp-title"
+            class="text-3xl font-black tracking-tight md:text-5xl"
+          >
+            CivicFlow vs. legacy portals.
+          </h2>
 
-    <!-- ============================================================ -->
-    <!-- 05 TECH STACK                                                -->
-    <!-- ============================================================ -->
-    <section id="stack" aria-labelledby="stack-title" class="scroll-mt-28 border-b-2 border-black">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>05 / Stack
-        </p>
-        <h2 id="stack-title" class="text-3xl font-black tracking-tight md:text-5xl">Greenfield stack, layer by layer.</h2>
-        <p class="mt-4 max-w-3xl text-lg">Nothing is built yet, so every layer is a deliberate choice. Each row shows the pick, what we compared it against, and why.</p>
-
-        <div class="mt-10 overflow-x-auto border-2 border-black shadow-[6px_6px_0_0_#000]">
-          <table class="w-full min-w-205 border-collapse text-left text-sm">
-            <caption class="border-b-2 border-black bg-white px-4 py-3 text-left font-mono text-xs font-bold uppercase">
-              Table 2 — Layer-by-layer technology decisions
-            </caption>
-            <thead class="bg-black text-white">
-              <tr>
-                <th scope="col" class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest">Layer</th>
-                <th scope="col" class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest">CivicFlow pick</th>
-                <th scope="col" class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest">Alternatives considered</th>
-                <th scope="col" class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest">Why</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Frontend</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">Next.js</td>
-                <td class="border-2 border-black p-4">React + Vite, SvelteKit</td>
-                <td class="border-2 border-black p-4">Server-rendered first load for slow phones, built-in routing, and a large talent pool.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Service Worker</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">Serwist (<code>@serwist/next</code>)</td>
-                <td class="border-2 border-black p-4">Hand-rolled SW, raw Workbox</td>
-                <td class="border-2 border-black p-4">Workbox-based, with an official Next.js plugin and a built-in <code class="font-mono">BackgroundSyncQueue</code>.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Local store</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">IndexedDB via Dexie</td>
-                <td class="border-2 border-black p-4">localStorage, RxDB / PouchDB</td>
-                <td class="border-2 border-black p-4">Stores large binary data (file uploads) asynchronously. localStorage is synchronous and only holds a few MB of strings.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Sync</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">Background Sync + queue + <code>online</code> fallback</td>
-                <td class="border-2 border-black p-4">PowerSync, polling</td>
-                <td class="border-2 border-black p-4">Sync only needs to push submissions one way, so a full two-way sync engine is overkill. The fallback covers Safari and Firefox.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Encryption</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">Web Crypto AES-GCM</td>
-                <td class="border-2 border-black p-4">CryptoJS, none</td>
-                <td class="border-2 border-black p-4">Native and authenticated (detects tampering). MDN recommends it over CBC and CTR. Keys can be non-extractable.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Backend</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">Express</td>
-                <td class="border-2 border-black p-4">Fastify, NestJS</td>
-                <td class="border-2 border-black p-4">Minimal, widely known, and easy to audit for on-prem government deployments.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Database</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">MongoDB</td>
-                <td class="border-2 border-black p-4">PostgreSQL (JSONB), CouchDB</td>
-                <td class="border-2 border-black p-4">Each form is a different JSON shape, so documents map naturally. Supports TTL indexes for automatic deletion.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Gov-API retry queue</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">BullMQ + Redis</td>
-                <td class="border-2 border-black p-4">In-process retry</td>
-                <td class="border-2 border-black p-4">Retries with backoff survive server restarts. Failed jobs land in a dead-letter queue for review.</td>
-              </tr>
-              <tr>
-                <th scope="row" class="border-2 border-black p-4 font-bold">Validation</th>
-                <td class="border-2 border-black p-4 font-mono font-bold">JSON Schema (Ajv)</td>
-                <td class="border-2 border-black p-4">Zod</td>
-                <td class="border-2 border-black p-4">The same schema renders the form, validates in the browser, and validates on the server.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Full-stack verdict -->
-        <div class="mt-12 border-2 border-black bg-white shadow-[6px_6px_0_0_#000]">
-          <h3 class="border-b-2 border-black px-6 py-4 text-xl font-black md:text-2xl">Full-stack verdict</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full min-w-150 border-collapse text-left text-sm">
-              <caption class="sr-only">Stack A versus Stack B across four criteria</caption>
-              <thead>
+          <div
+            class="mt-10 overflow-x-auto border-2 border-black shadow-[6px_6px_0_0_#000]"
+          >
+            <table class="w-full min-w-160 border-collapse text-left">
+              <caption
+                class="border-b-2 border-black bg-white px-4 py-3 text-left font-mono text-xs font-bold uppercase"
+              >
+                Table 1 — Reliability, offline, custody and integration
+              </caption>
+              <thead class="bg-black text-white">
                 <tr>
-                  <th scope="col" class="border-b-2 border-r-2 border-black p-4 font-mono text-xs uppercase">Criterion</th>
-                  <th scope="col" class="border-b-2 border-r-2 border-black bg-orange-600 p-4 font-mono text-xs uppercase text-black">A — Next.js + Express + MongoDB</th>
-                  <th scope="col" class="border-b-2 border-black p-4 font-mono text-xs uppercase">B — React/Vite + Fastify + PostgreSQL</th>
+                  <th
+                    scope="col"
+                    class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest"
+                  >
+                    Metric
+                  </th>
+                  <th
+                    scope="col"
+                    class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest"
+                  >
+                    <span class="inline-flex items-center gap-2"
+                      ><span
+                        aria-hidden="true"
+                        class="inline-block h-3 w-3 bg-orange-600"
+                      ></span
+                      >CivicFlow</span
+                    >
+                  </th>
+                  <th
+                    scope="col"
+                    class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest"
+                  >
+                    Legacy Government Portals
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row" class="border-b-2 border-r-2 border-black p-4 font-bold">Dev speed</th>
-                  <td class="border-b-2 border-r-2 border-black p-4">High: one framework covers routing, SSR and the PWA plugin.</td>
-                  <td class="border-b-2 border-black p-4">High: fast builds, but you assemble routing and SSR yourself.</td>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Data Reliability
+                  </th>
+                  <td class="border-2 border-black p-4">
+                    <span class="font-bold">Guaranteed delivery</span>, queued
+                    on-device and retried until acknowledged.
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Session timeouts. Unsaved work is lost.
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row" class="border-b-2 border-r-2 border-black p-4 font-bold">Schema flexibility (dynamic forms)</th>
-                  <td class="border-b-2 border-r-2 border-black p-4">Native: documents fit any shape of JSON form.</td>
-                  <td class="border-b-2 border-black p-4">Good: JSONB works, at the cost of extra migration discipline.</td>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Offline Capability
+                  </th>
+                  <td class="border-2 border-black p-4">
+                    <span class="font-bold">Full offline caching</span>: keep
+                    typing with zero signal.
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Requires persistent connection.
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row" class="border-b-2 border-r-2 border-black p-4 font-bold">Hiring pool</th>
-                  <td class="border-b-2 border-r-2 border-black p-4">Very large (MERN-style skills).</td>
-                  <td class="border-b-2 border-black p-4">Large. Fastify is less common than Express.</td>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Security / Custody
+                  </th>
+                  <td class="border-2 border-black p-4">
+                    <span class="font-bold"
+                      >Local encryption prior to sync</span
+                    >
+                    (AES-GCM), wiped after server acknowledgement.
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Vulnerable over-the-wire transfer.
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row" class="border-r-2 border-black p-4 font-bold">On-prem ease</th>
-                  <td class="border-r-2 border-black p-4">Good: MongoDB Community plus Node containers.</td>
-                  <td class="p-4">Very good: Postgres is often already approved in government IT.</td>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Integration
+                  </th>
+                  <td class="border-2 border-black p-4">
+                    <span class="font-bold">Lightweight PWA middleware</span> in
+                    front of existing APIs.
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Expensive legacy overhauls.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="border-t-2 border-black p-6 text-base">
-            <span class="font-mono text-xs font-bold uppercase">Verdict:</span>
-            <strong>Stack A</strong> for the MVP, because document storage matches dynamic JSON-schema forms and gets us to a demo fastest.
-            If a pilot government mandates Postgres, PostgreSQL JSONB is a valid swap, and only the persistence layer would change.
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 04 MARKET LANDSCAPE                                          -->
+      <!-- ============================================================ -->
+      <section
+        id="landscape"
+        aria-labelledby="land-title"
+        class="scroll-mt-28 border-b-2 border-black"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >04 / Landscape
           </p>
+          <h2
+            id="land-title"
+            class="text-3xl font-black tracking-tight md:text-5xl"
+          >
+            Who else is close, and where the gap is.
+          </h2>
+          <p class="mt-4 max-w-3xl text-lg">
+            Researched from product sites and developer docs. Product Hunt
+            search was attempted, but its results are rendered client-side and
+            couldn't be read programmatically.
+          </p>
+
+          <ul class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <li
+              class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-xl font-black">Form.io Offline Plugin</h3>
+                <span
+                  class="shrink-0 border-2 border-black bg-orange-600 px-1.5 font-mono text-[10px] font-bold uppercase"
+                  >Closest</span
+                >
+              </div>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    What it does
+                  </dt>
+                  <dd>
+                    Queues submissions in IndexedDB (via PouchDB) and replays
+                    them first-in, first-out on reconnect.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Gap vs. CivicFlow
+                  </dt>
+                  <dd>
+                    A paid, licensed add-on that only works on the Form.io
+                    platform. Its docs say login doesn't work offline. It
+                    doesn't sit in front of existing portals.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Category
+                  </dt>
+                  <dd>Form platform add-on</dd>
+                </div>
+              </dl>
+            </li>
+
+            <li
+              class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <h3 class="text-xl font-black">ODK</h3>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    What it does
+                  </dt>
+                  <dd>
+                    Open-source offline data collection. 2M+ users and 250M+
+                    submissions a year, synced automatically when online.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Gap vs. CivicFlow
+                  </dt>
+                  <dd>
+                    Built for researchers and field teams collecting data, not
+                    for citizens applying to a government portal.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Category
+                  </dt>
+                  <dd>Field data collection</dd>
+                </div>
+              </dl>
+            </li>
+
+            <li
+              class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <h3 class="text-xl font-black">CommCare (Dimagi)</h3>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    What it does
+                  </dt>
+                  <dd>
+                    Offline-first case management. SOC 2 and HIPAA compliant,
+                    1M+ frontline workers in 130+ countries.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Gap vs. CivicFlow
+                  </dt>
+                  <dd>
+                    Built for staff and health workers. It's a full platform,
+                    not middleware for an existing citizen portal.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Category
+                  </dt>
+                  <dd>Frontline program platform</dd>
+                </div>
+              </dl>
+            </li>
+
+            <li
+              class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <h3 class="text-xl font-black">PowerSync</h3>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    What it does
+                  </dt>
+                  <dd>
+                    Sync engine that keeps a client-side SQLite database in sync
+                    with Postgres, MongoDB, MySQL or SQL Server.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Gap vs. CivicFlow
+                  </dt>
+                  <dd>
+                    General developer infrastructure, with no form engine,
+                    government API adapter or citizen data-custody model.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Category
+                  </dt>
+                  <dd>Sync engine (possible building block)</dd>
+                </div>
+              </dl>
+            </li>
+
+            <li
+              class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-xl font-black">KoboToolbox</h3>
+                <span
+                  class="shrink-0 border-2 border-black px-1.5 font-mono text-[10px] font-bold uppercase"
+                  >Not fetched</span
+                >
+              </div>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    What it does
+                  </dt>
+                  <dd>
+                    Offline survey collection used widely by NGOs and
+                    humanitarian teams.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Gap vs. CivicFlow
+                  </dt>
+                  <dd>
+                    Survey tool for staff, not a reliability layer for
+                    citizen-facing portals.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Category
+                  </dt>
+                  <dd>Humanitarian surveys</dd>
+                </div>
+              </dl>
+            </li>
+
+            <li
+              class="flex flex-col border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-xl font-black">
+                  GOV.UK "save and return" / FormSG
+                </h3>
+                <span
+                  class="shrink-0 border-2 border-black px-1.5 font-mono text-[10px] font-bold uppercase"
+                  >Not fetched</span
+                >
+              </div>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    What it does
+                  </dt>
+                  <dd>
+                    Government-built form patterns and platforms that let
+                    citizens save drafts.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Gap vs. CivicFlow
+                  </dt>
+                  <dd>
+                    Drafts are saved on the server, so the citizen still needs a
+                    working connection to save them.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs font-bold uppercase">
+                    Category
+                  </dt>
+                  <dd>In-house gov form platforms</dd>
+                </div>
+              </dl>
+            </li>
+          </ul>
+
+          <!-- Why hasn't this been built -->
+          <div
+            class="mt-16 border-2 border-black bg-white shadow-[6px_6px_0_0_#000]"
+          >
+            <h3
+              class="border-b-2 border-black bg-black px-6 py-4 text-xl font-black text-white md:text-2xl"
+            >
+              Why hasn't this been built?
+            </h3>
+            <ol class="divide-y-2 divide-black">
+              <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
+                <span class="font-mono text-2xl font-black">01</span>
+                <p>
+                  <strong
+                    >Offline tools target field staff, not citizens.</strong
+                  >
+                  ODK, CommCare and Kobo serve trained workers on managed
+                  devices.
+                </p>
+                <p class="text-sm">
+                  <span class="font-mono text-xs font-bold uppercase"
+                    >CivicFlow's answer:</span
+                  >
+                  a citizen-facing PWA that needs no app-store install.
+                </p>
+              </li>
+              <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
+                <span class="font-mono text-2xl font-black">02</span>
+                <p>
+                  <strong>Vendors sell platforms, not middleware.</strong>
+                  Adopting them means migrating forms and data.
+                </p>
+                <p class="text-sm">
+                  <span class="font-mono text-xs font-bold uppercase"
+                    >CivicFlow's answer:</span
+                  >
+                  a drop-in adapter. No rip-and-replace of the government
+                  backend.
+                </p>
+              </li>
+              <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
+                <span class="font-mono text-2xl font-black">03</span>
+                <p>
+                  <strong
+                    >Background Sync is missing on iOS Safari and
+                    Firefox.</strong
+                  >
+                  "Automatic" sync breaks for a large share of phones.
+                </p>
+                <p class="text-sm">
+                  <span class="font-mono text-xs font-bold uppercase"
+                    >CivicFlow's answer:</span
+                  >
+                  replay the queue on the
+                  <code class="font-mono">online</code> event or when the app
+                  opens.
+                </p>
+              </li>
+              <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
+                <span class="font-mono text-2xl font-black">04</span>
+                <p>
+                  <strong>OTPs and session expiry don't work offline.</strong>
+                  Government login flows expect a live connection.
+                </p>
+                <p class="text-sm">
+                  <span class="font-mono text-xs font-bold uppercase"
+                    >CivicFlow's answer:</span
+                  >
+                  deferred authentication. Fill offline, then verify the OTP
+                  before final submission.
+                </p>
+              </li>
+              <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
+                <span class="font-mono text-2xl font-black">05</span>
+                <p>
+                  <strong>Legal grey zones.</strong> Is an offline timestamp
+                  valid for a deadline? Who is liable for data on the device?
+                </p>
+                <p class="text-sm">
+                  <span class="font-mono text-xs font-bold uppercase"
+                    >CivicFlow's answer:</span
+                  >
+                  cryptographic timestamps plus policy negotiation, with data
+                  encrypted and wiped after acknowledgement.
+                </p>
+              </li>
+              <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
+                <span class="font-mono text-2xl font-black">06</span>
+                <p>
+                  <strong>Legacy APIs aren't idempotent.</strong> Blind retries
+                  create duplicate applications.
+                </p>
+                <p class="text-sm">
+                  <span class="font-mono text-xs font-bold uppercase"
+                    >CivicFlow's answer:</span
+                  >
+                  an idempotency key per submission, deduplicated on the server
+                  before forwarding.
+                </p>
+              </li>
+              <li class="grid gap-2 p-6 md:grid-cols-[3rem_1fr_1fr] md:gap-6">
+                <span class="font-mono text-2xl font-black">07</span>
+                <p>
+                  <strong>B2G sales take 12–24 months.</strong> System
+                  integrators hold the contracts.
+                </p>
+                <p class="text-sm">
+                  <span class="font-mono text-xs font-bold uppercase"
+                    >CivicFlow's answer:</span
+                  >
+                  B2B2G through integrators, starting with one municipal or
+                  university pilot.
+                </p>
+              </li>
+            </ol>
+          </div>
+
+          <div
+            class="mt-10 border-2 border-black border-l-8 border-l-orange-600 bg-white p-6 md:p-8"
+          >
+            <p class="font-mono text-xs font-bold uppercase tracking-widest">
+              Positioning
+            </p>
+            <p class="mt-3 text-xl font-black md:text-2xl">
+              The gap isn't "offline forms". It's a citizen-facing, drop-in
+              reliability layer that sits in front of the portals governments
+              already run.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================================================ -->
-    <!-- 06 CONCEPTS                                                  -->
-    <!-- ============================================================ -->
-    <section id="concepts" aria-labelledby="concepts-title" class="scroll-mt-28 border-b-2 border-black">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>06 / Concepts
-        </p>
-        <h2 id="concepts-title" class="text-3xl font-black tracking-tight md:text-5xl">14 concepts, in plain words.</h2>
-        <p class="mt-4 max-w-3xl text-lg">Every technical term on this page, explained without jargon.</p>
+      <!-- ============================================================ -->
+      <!-- 05 TECH STACK                                                -->
+      <!-- ============================================================ -->
+      <section
+        id="stack"
+        aria-labelledby="stack-title"
+        class="scroll-mt-28 border-b-2 border-black"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >05 / Stack
+          </p>
+          <h2
+            id="stack-title"
+            class="text-3xl font-black tracking-tight md:text-5xl"
+          >
+            Greenfield stack, layer by layer.
+          </h2>
+          <p class="mt-4 max-w-3xl text-lg">
+            Nothing is built yet, so every layer is a deliberate choice. Each
+            row shows the pick, what we compared it against, and why.
+          </p>
 
-        <dl class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">PWA (Progressive Web App)</dt>
-            <dd class="mt-3 text-sm">A website that installs and behaves like a phone app, including working offline.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> citizens get app-like reliability from a link, with no app-store download.</dd>
+          <div
+            class="mt-10 overflow-x-auto border-2 border-black shadow-[6px_6px_0_0_#000]"
+          >
+            <table class="w-full min-w-205 border-collapse text-left text-sm">
+              <caption
+                class="border-b-2 border-black bg-white px-4 py-3 text-left font-mono text-xs font-bold uppercase"
+              >
+                Table 2 — Layer-by-layer technology decisions
+              </caption>
+              <thead class="bg-black text-white">
+                <tr>
+                  <th
+                    scope="col"
+                    class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest"
+                  >
+                    Layer
+                  </th>
+                  <th
+                    scope="col"
+                    class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest"
+                  >
+                    CivicFlow pick
+                  </th>
+                  <th
+                    scope="col"
+                    class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest"
+                  >
+                    Alternatives considered
+                  </th>
+                  <th
+                    scope="col"
+                    class="border-2 border-black p-4 font-mono text-xs uppercase tracking-widest"
+                  >
+                    Why
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Frontend
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    Next.js
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    React + Vite, SvelteKit
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Server-rendered first load for slow phones, built-in
+                    routing, and a large talent pool.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Service Worker
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    Serwist (<code>@serwist/next</code>)
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Hand-rolled SW, raw Workbox
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Workbox-based, with an official Next.js plugin and a
+                    built-in <code class="font-mono">BackgroundSyncQueue</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Local store
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    IndexedDB via Dexie
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    localStorage, RxDB / PouchDB
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Stores large binary data (file uploads) asynchronously.
+                    localStorage is synchronous and only holds a few MB of
+                    strings.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Sync
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    Background Sync + queue + <code>online</code> fallback
+                  </td>
+                  <td class="border-2 border-black p-4">PowerSync, polling</td>
+                  <td class="border-2 border-black p-4">
+                    Sync only needs to push submissions one way, so a full
+                    two-way sync engine is overkill. The fallback covers Safari
+                    and Firefox.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Encryption
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    Web Crypto AES-GCM
+                  </td>
+                  <td class="border-2 border-black p-4">CryptoJS, none</td>
+                  <td class="border-2 border-black p-4">
+                    Native and authenticated (detects tampering). MDN recommends
+                    it over CBC and CTR. Keys can be non-extractable.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Backend
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    Express
+                  </td>
+                  <td class="border-2 border-black p-4">Fastify, NestJS</td>
+                  <td class="border-2 border-black p-4">
+                    Minimal, widely known, and easy to audit for on-prem
+                    government deployments.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Database
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    MongoDB
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    PostgreSQL (JSONB), CouchDB
+                  </td>
+                  <td class="border-2 border-black p-4">
+                    Each form is a different JSON shape, so documents map
+                    naturally. Supports TTL indexes for automatic deletion.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Gov-API retry queue
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    BullMQ + Redis
+                  </td>
+                  <td class="border-2 border-black p-4">In-process retry</td>
+                  <td class="border-2 border-black p-4">
+                    Retries with backoff survive server restarts. Failed jobs
+                    land in a dead-letter queue for review.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="border-2 border-black p-4 font-bold">
+                    Validation
+                  </th>
+                  <td class="border-2 border-black p-4 font-mono font-bold">
+                    JSON Schema (Ajv)
+                  </td>
+                  <td class="border-2 border-black p-4">Zod</td>
+                  <td class="border-2 border-black p-4">
+                    The same schema renders the form, validates in the browser,
+                    and validates on the server.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Service Worker</dt>
-            <dd class="mt-3 text-sm">A small background script that sits between the page and the internet and can answer requests itself.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> it catches a failed submission and queues it instead of showing an error.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">IndexedDB</dt>
-            <dd class="mt-3 text-sm">A database built into every modern browser that can store large data, including files, on the device.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> it's where the 45 minutes of work survives a dropped connection.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Background Sync API</dt>
-            <dd class="mt-3 text-sm">A browser feature that runs a task once the connection returns, even if the tab has been closed.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> it gives automatic submission on Chromium. Other browsers need our fallback.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Web Crypto / AES-GCM</dt>
-            <dd class="mt-3 text-sm">The browser's built-in encryption. AES-GCM scrambles data and also detects if anyone has altered it.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> cached citizen data is never stored on the device in plain text.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Idempotency Key</dt>
-            <dd class="mt-3 text-sm">A unique ID attached to a request so the server can tell when the same request is sent twice.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> retries never create duplicate applications.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Middleware / Adapter</dt>
-            <dd class="mt-3 text-sm">Software in the middle that translates between a modern app and an old system.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> governments keep their backend. CivicFlow converts JSON into whatever format it expects.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Data Custody</dt>
-            <dd class="mt-3 text-sm">Who holds the data, where it's stored, and for how long, at every step.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> a clear chain of custody is how a government decides whether to trust a vendor.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Workbox (Serwist)</dt>
-            <dd class="mt-3 text-sm">Ready-made libraries for writing service workers: caching rules, offline pages and request queues.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> it avoids hand-writing error-prone offline logic.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">JSON Schema Forms</dt>
-            <dd class="mt-3 text-sm">A form is described as a data file, and the app draws the form from it automatically.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> new government forms launch without redeploying the app.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Deferred Auth (OTP)</dt>
-            <dd class="mt-3 text-sm">Let people fill in the form offline, and ask for the one-time password only when they're back online.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> OTP login, which needs a connection, no longer blocks offline work.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Schema Versioning</dt>
-            <dd class="mt-3 text-sm">Labelling each version of a form so old and new drafts can be told apart.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> if the form changes while a draft is offline, the citizen only fills in the new fields.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Exponential Backoff</dt>
-            <dd class="mt-3 text-sm">Waiting longer after each failed retry: 1s, then 2s, 4s, 8s, and so on.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> it avoids hammering a government server that's already struggling on deadline day.</dd>
-          </div>
-          <div class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]">
-            <dt class="font-mono text-base font-bold">Cryptographic Timestamp</dt>
-            <dd class="mt-3 text-sm">A tamper-evident record of exactly when something was completed.</dd>
-            <dd class="mt-3 border-t-2 border-black pt-3 text-sm"><span class="font-mono text-xs font-bold uppercase">Why it matters:</span> it proves a form was finished before the deadline, even if it synced later.</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
 
-    <!-- ============================================================ -->
-    <!-- 07 SUCCESS CRITERIA                                          -->
-    <!-- ============================================================ -->
-    <section id="success" aria-labelledby="success-title" class="scroll-mt-28 border-b-2 border-black">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>07 / Success Criteria
-        </p>
-        <h2 id="success-title" class="text-3xl font-black tracking-tight md:text-5xl">What "MVP done" means.</h2>
-        <p class="mt-4 max-w-3xl text-lg">Every line below is either a number or a pass/fail check.</p>
-
-        <div class="mt-10 grid gap-8 lg:grid-cols-2">
-          <div class="border-2 border-black bg-white shadow-[6px_6px_0_0_#000]">
-            <h3 class="border-b-2 border-black bg-black px-6 py-4 font-mono text-sm font-bold uppercase tracking-widest text-white">Technical</h3>
-            <ul class="divide-y-2 divide-black">
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p><span class="font-mono font-bold">0 bytes</span> of form data lost in the airplane-mode demo.</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p>Queued payload syncs <span class="font-mono font-bold">≤ 5s</span> after reconnect on Chromium, and on the <span class="font-mono font-bold">next app open</span> in Safari and Firefox.</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p><span class="font-mono font-bold">100%</span> eventual delivery against a mock gov server with a <span class="font-mono font-bold">30% failure rate</span> and <span class="font-mono font-bold">10s latency</span>.</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p><span class="font-mono font-bold">0 duplicate</span> submissions after retries (idempotency keys checked on the server).</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p>Payload is <span class="font-mono font-bold">AES-GCM encrypted</span> before it's written to IndexedDB, and <span class="font-mono font-bold">wiped</span> after the server acknowledges it (checked in DevTools).</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p><span class="font-mono font-bold">Installable PWA</span>: valid manifest and service worker, passes Chrome's install criteria, and the app shell loads fully offline.</p></li>
-            </ul>
-          </div>
-
-          <div class="border-2 border-black bg-white shadow-[6px_6px_0_0_#000]">
-            <h3 class="border-b-2 border-black bg-orange-600 px-6 py-4 font-mono text-sm font-bold uppercase tracking-widest text-black">Pilot</h3>
-            <ul class="divide-y-2 divide-black">
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p><span class="font-mono font-bold">1</span> municipal or university pilot form live (e.g. a scholarship application).</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p><span class="font-mono font-bold">≥ 50%</span> fewer "lost my form" support tickets than the pre-pilot baseline.</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p>A <span class="font-mono font-bold">measurable drop</span> in form abandonment rate vs. the baseline, reported weekly.</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p>The observability dashboard shows <span class="font-mono font-bold">recovered sessions</span> and <span class="font-mono font-bold">gov API uptime</span>.</p></li>
-              <li class="flex gap-4 p-5"><span aria-hidden="true" class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"></span><p>Deployment stays <span class="font-mono font-bold">inside government infrastructure</span> (on-prem or private cloud), aligned with India's DPDP Act.</p></li>
-            </ul>
+          <!-- Full-stack verdict -->
+          <div
+            class="mt-12 border-2 border-black bg-white shadow-[6px_6px_0_0_#000]"
+          >
+            <h3
+              class="border-b-2 border-black px-6 py-4 text-xl font-black md:text-2xl"
+            >
+              Full-stack verdict
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-150 border-collapse text-left text-sm">
+                <caption class="sr-only">
+                  Stack A versus Stack B across four criteria
+                </caption>
+                <thead>
+                  <tr>
+                    <th
+                      scope="col"
+                      class="border-b-2 border-r-2 border-black p-4 font-mono text-xs uppercase"
+                    >
+                      Criterion
+                    </th>
+                    <th
+                      scope="col"
+                      class="border-b-2 border-r-2 border-black bg-orange-600 p-4 font-mono text-xs uppercase text-black"
+                    >
+                      A — Next.js + Express + MongoDB
+                    </th>
+                    <th
+                      scope="col"
+                      class="border-b-2 border-black p-4 font-mono text-xs uppercase"
+                    >
+                      B — React/Vite + Fastify + PostgreSQL
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th
+                      scope="row"
+                      class="border-b-2 border-r-2 border-black p-4 font-bold"
+                    >
+                      Dev speed
+                    </th>
+                    <td class="border-b-2 border-r-2 border-black p-4">
+                      High: one framework covers routing, SSR and the PWA
+                      plugin.
+                    </td>
+                    <td class="border-b-2 border-black p-4">
+                      High: fast builds, but you assemble routing and SSR
+                      yourself.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th
+                      scope="row"
+                      class="border-b-2 border-r-2 border-black p-4 font-bold"
+                    >
+                      Schema flexibility (dynamic forms)
+                    </th>
+                    <td class="border-b-2 border-r-2 border-black p-4">
+                      Native: documents fit any shape of JSON form.
+                    </td>
+                    <td class="border-b-2 border-black p-4">
+                      Good: JSONB works, at the cost of extra migration
+                      discipline.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th
+                      scope="row"
+                      class="border-b-2 border-r-2 border-black p-4 font-bold"
+                    >
+                      Hiring pool
+                    </th>
+                    <td class="border-b-2 border-r-2 border-black p-4">
+                      Very large (MERN-style skills).
+                    </td>
+                    <td class="border-b-2 border-black p-4">
+                      Large. Fastify is less common than Express.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th
+                      scope="row"
+                      class="border-r-2 border-black p-4 font-bold"
+                    >
+                      On-prem ease
+                    </th>
+                    <td class="border-r-2 border-black p-4">
+                      Good: MongoDB Community plus Node containers.
+                    </td>
+                    <td class="p-4">
+                      Very good: Postgres is often already approved in
+                      government IT.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="border-t-2 border-black p-6 text-base">
+              <span class="font-mono text-xs font-bold uppercase"
+                >Verdict:</span
+              >
+              <strong>Stack A</strong> for the MVP, because document storage
+              matches dynamic JSON-schema forms and gets us to a demo fastest.
+              If a pilot government mandates Postgres, PostgreSQL JSONB is a
+              valid swap, and only the persistence layer would change.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================================================ -->
-    <!-- 08 DEVELOPER INTEGRATION                                     -->
-    <!-- ============================================================ -->
-    <section id="sdk" aria-labelledby="sdk-title" class="scroll-mt-28">
-      <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <p class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest">
-          <span aria-hidden="true" class="inline-block h-3 w-3 bg-orange-600"></span>08 / Developer Integration
-        </p>
-        <h2 id="sdk-title" class="text-3xl font-black tracking-tight md:text-5xl">Three steps for a municipality.</h2>
-        <p class="mt-4 max-w-3xl text-lg">Wrap an existing form. No backend rewrite.</p>
+      <!-- ============================================================ -->
+      <!-- 06 CONCEPTS                                                  -->
+      <!-- ============================================================ -->
+      <section
+        id="concepts"
+        aria-labelledby="concepts-title"
+        class="scroll-mt-28 border-b-2 border-black"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >06 / Concepts
+          </p>
+          <h2
+            id="concepts-title"
+            class="text-3xl font-black tracking-tight md:text-5xl"
+          >
+            14 concepts, in plain words.
+          </h2>
+          <p class="mt-4 max-w-3xl text-lg">
+            Every technical term on this page, explained without jargon.
+          </p>
 
-        <ol class="mt-10 grid border-2 border-black md:grid-cols-3">
-          <li class="border-b-2 border-black p-6 md:border-b-0 md:border-r-2">
-            <span class="font-mono text-xs font-bold uppercase">Step 01</span>
-            <p class="mt-2 text-2xl font-black">Install</p>
-            <p class="mt-1 text-sm">Add one npm package.</p>
-          </li>
-          <li class="border-b-2 border-black p-6 md:border-b-0 md:border-r-2">
-            <span class="font-mono text-xs font-bold uppercase">Step 02</span>
-            <p class="mt-2 text-2xl font-black">Init</p>
-            <p class="mt-1 text-sm">Point it at your CivicFlow endpoint.</p>
-          </li>
-          <li class="bg-orange-600 p-6 text-black">
-            <span class="font-mono text-xs font-bold uppercase">Step 03</span>
-            <p class="mt-2 text-2xl font-black">Wrap your form</p>
-            <p class="mt-1 text-sm">Existing markup becomes offline-safe.</p>
-          </li>
-        </ol>
+          <dl class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">
+                PWA (Progressive Web App)
+              </dt>
+              <dd class="mt-3 text-sm">
+                A website that installs and behaves like a phone app, including
+                working offline.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                citizens get app-like reliability from a link, with no app-store
+                download.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Service Worker</dt>
+              <dd class="mt-3 text-sm">
+                A small background script that sits between the page and the
+                internet and can answer requests itself.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                it catches a failed submission and queues it instead of showing
+                an error.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">IndexedDB</dt>
+              <dd class="mt-3 text-sm">
+                A database built into every modern browser that can store large
+                data, including files, on the device.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                it's where the 45 minutes of work survives a dropped connection.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Background Sync API</dt>
+              <dd class="mt-3 text-sm">
+                A browser feature that runs a task once the connection returns,
+                even if the tab has been closed.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                it gives automatic submission on Chromium. Other browsers need
+                our fallback.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">
+                Web Crypto / AES-GCM
+              </dt>
+              <dd class="mt-3 text-sm">
+                The browser's built-in encryption. AES-GCM scrambles data and
+                also detects if anyone has altered it.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                cached citizen data is never stored on the device in plain text.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Idempotency Key</dt>
+              <dd class="mt-3 text-sm">
+                A unique ID attached to a request so the server can tell when
+                the same request is sent twice.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                retries never create duplicate applications.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">
+                Middleware / Adapter
+              </dt>
+              <dd class="mt-3 text-sm">
+                Software in the middle that translates between a modern app and
+                an old system.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                governments keep their backend. CivicFlow converts JSON into
+                whatever format it expects.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Data Custody</dt>
+              <dd class="mt-3 text-sm">
+                Who holds the data, where it's stored, and for how long, at
+                every step.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                a clear chain of custody is how a government decides whether to
+                trust a vendor.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Workbox (Serwist)</dt>
+              <dd class="mt-3 text-sm">
+                Ready-made libraries for writing service workers: caching rules,
+                offline pages and request queues.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                it avoids hand-writing error-prone offline logic.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">JSON Schema Forms</dt>
+              <dd class="mt-3 text-sm">
+                A form is described as a data file, and the app draws the form
+                from it automatically.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                new government forms launch without redeploying the app.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Deferred Auth (OTP)</dt>
+              <dd class="mt-3 text-sm">
+                Let people fill in the form offline, and ask for the one-time
+                password only when they're back online.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                OTP login, which needs a connection, no longer blocks offline
+                work.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Schema Versioning</dt>
+              <dd class="mt-3 text-sm">
+                Labelling each version of a form so old and new drafts can be
+                told apart.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                if the form changes while a draft is offline, the citizen only
+                fills in the new fields.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">Exponential Backoff</dt>
+              <dd class="mt-3 text-sm">
+                Waiting longer after each failed retry: 1s, then 2s, 4s, 8s, and
+                so on.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                it avoids hammering a government server that's already
+                struggling on deadline day.
+              </dd>
+            </div>
+            <div
+              class="border-2 border-black bg-white p-6 shadow-[6px_6px_0_0_#000]"
+            >
+              <dt class="font-mono text-base font-bold">
+                Cryptographic Timestamp
+              </dt>
+              <dd class="mt-3 text-sm">
+                A tamper-evident record of exactly when something was completed.
+              </dd>
+              <dd class="mt-3 border-t-2 border-black pt-3 text-sm">
+                <span class="font-mono text-xs font-bold uppercase"
+                  >Why it matters:</span
+                >
+                it proves a form was finished before the deadline, even if it
+                synced later.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
 
-        <p class="mt-10 font-mono text-xs font-bold uppercase">Illustrative mock API — the SDK isn't published yet</p>
-        <!-- Added to build trust with technical government stakeholders -->
-        <pre class="mt-3 overflow-x-auto border-2 border-black bg-black p-6 font-mono text-sm leading-relaxed text-white shadow-[6px_6px_0_0_#ea580c]"><code><span class="text-orange-600">$</span> npm install @civicflow/sdk
+      <!-- ============================================================ -->
+      <!-- 07 SUCCESS CRITERIA                                          -->
+      <!-- ============================================================ -->
+      <section
+        id="success"
+        aria-labelledby="success-title"
+        class="scroll-mt-28 border-b-2 border-black"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >07 / Success Criteria
+          </p>
+          <h2
+            id="success-title"
+            class="text-3xl font-black tracking-tight md:text-5xl"
+          >
+            What "MVP done" means.
+          </h2>
+          <p class="mt-4 max-w-3xl text-lg">
+            Every line below is either a number or a pass/fail check.
+          </p>
+
+          <div class="mt-10 grid gap-8 lg:grid-cols-2">
+            <div
+              class="border-2 border-black bg-white shadow-[6px_6px_0_0_#000]"
+            >
+              <h3
+                class="border-b-2 border-black bg-black px-6 py-4 font-mono text-sm font-bold uppercase tracking-widest text-white"
+              >
+                Technical
+              </h3>
+              <ul class="divide-y-2 divide-black">
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    <span class="font-mono font-bold">0 bytes</span> of form
+                    data lost in the airplane-mode demo.
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    Queued payload syncs
+                    <span class="font-mono font-bold">≤ 5s</span> after
+                    reconnect on Chromium, and on the
+                    <span class="font-mono font-bold">next app open</span> in
+                    Safari and Firefox.
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    <span class="font-mono font-bold">100%</span> eventual
+                    delivery against a mock gov server with a
+                    <span class="font-mono font-bold">30% failure rate</span>
+                    and <span class="font-mono font-bold">10s latency</span>.
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    <span class="font-mono font-bold">0 duplicate</span>
+                    submissions after retries (idempotency keys checked on the
+                    server).
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    Payload is
+                    <span class="font-mono font-bold">AES-GCM encrypted</span>
+                    before it's written to IndexedDB, and
+                    <span class="font-mono font-bold">wiped</span> after the
+                    server acknowledges it (checked in DevTools).
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    <span class="font-mono font-bold">Installable PWA</span>:
+                    valid manifest and service worker, passes Chrome's install
+                    criteria, and the app shell loads fully offline.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="border-2 border-black bg-white shadow-[6px_6px_0_0_#000]"
+            >
+              <h3
+                class="border-b-2 border-black bg-orange-600 px-6 py-4 font-mono text-sm font-bold uppercase tracking-widest text-black"
+              >
+                Pilot
+              </h3>
+              <ul class="divide-y-2 divide-black">
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    <span class="font-mono font-bold">1</span> municipal or
+                    university pilot form live (e.g. a scholarship application).
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    <span class="font-mono font-bold">≥ 50%</span> fewer "lost
+                    my form" support tickets than the pre-pilot baseline.
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    A
+                    <span class="font-mono font-bold">measurable drop</span> in
+                    form abandonment rate vs. the baseline, reported weekly.
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    The observability dashboard shows
+                    <span class="font-mono font-bold">recovered sessions</span>
+                    and <span class="font-mono font-bold">gov API uptime</span>.
+                  </p>
+                </li>
+                <li class="flex gap-4 p-5">
+                  <span
+                    aria-hidden="true"
+                    class="mt-1 inline-block h-4 w-4 shrink-0 border-2 border-black"
+                  ></span>
+                  <p>
+                    Deployment stays
+                    <span class="font-mono font-bold"
+                      >inside government infrastructure</span
+                    >
+                    (on-prem or private cloud), aligned with India's DPDP Act.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 08 DEVELOPER INTEGRATION                                     -->
+      <!-- ============================================================ -->
+      <section id="sdk" aria-labelledby="sdk-title" class="scroll-mt-28">
+        <div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+          <p
+            class="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest"
+          >
+            <span
+              aria-hidden="true"
+              class="inline-block h-3 w-3 bg-orange-600"
+            ></span
+            >08 / Developer Integration
+          </p>
+          <h2
+            id="sdk-title"
+            class="text-3xl font-black tracking-tight md:text-5xl"
+          >
+            Three steps for a municipality.
+          </h2>
+          <p class="mt-4 max-w-3xl text-lg">
+            Wrap an existing form. No backend rewrite.
+          </p>
+
+          <ol class="mt-10 grid border-2 border-black md:grid-cols-3">
+            <li class="border-b-2 border-black p-6 md:border-b-0 md:border-r-2">
+              <span class="font-mono text-xs font-bold uppercase">Step 01</span>
+              <p class="mt-2 text-2xl font-black">Install</p>
+              <p class="mt-1 text-sm">Add one npm package.</p>
+            </li>
+            <li class="border-b-2 border-black p-6 md:border-b-0 md:border-r-2">
+              <span class="font-mono text-xs font-bold uppercase">Step 02</span>
+              <p class="mt-2 text-2xl font-black">Init</p>
+              <p class="mt-1 text-sm">Point it at your CivicFlow endpoint.</p>
+            </li>
+            <li class="bg-orange-600 p-6 text-black">
+              <span class="font-mono text-xs font-bold uppercase">Step 03</span>
+              <p class="mt-2 text-2xl font-black">Wrap your form</p>
+              <p class="mt-1 text-sm">Existing markup becomes offline-safe.</p>
+            </li>
+          </ol>
+
+          <p class="mt-10 font-mono text-xs font-bold uppercase">
+            Illustrative mock API — the SDK isn't published yet
+          </p>
+          <!-- Added to build trust with technical government stakeholders -->
+          <pre
+            class="mt-3 overflow-x-auto border-2 border-black bg-black p-6 font-mono text-sm leading-relaxed text-white shadow-[6px_6px_0_0_#ea580c]"
+          ><code><span class="text-orange-600">$</span> npm install @civicflow/sdk
 
 <span class="text-orange-600">import</span> { CivicFlow } <span class="text-orange-600">from</span> '@civicflow/sdk';
 
@@ -666,66 +1729,147 @@ CivicFlow.init({
 });
 
 CivicFlow.wrap(document.querySelector('#application-form'));</code></pre>
-      </div>
-    </section>
-  </main>
+        </div>
+      </section>
+    </main>
 
-  <!-- ============================================================ -->
-  <!-- FOOTER + SOURCES                                             -->
-  <!-- ============================================================ -->
-  <footer class="border-t-2 border-black bg-white">
-    <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-3 md:px-8">
-      <div>
-        <p class="flex items-center gap-2 text-xl font-black">
-          <span aria-hidden="true" class="inline-block h-5 w-5 border-2 border-black bg-orange-600"></span>CIVICFLOW
-        </p>
-        <p class="mt-3 text-sm">Resilient digital public infrastructure. Licensed under Apache-2.0.</p>
-      </div>
+    <!-- ============================================================ -->
+    <!-- FOOTER + SOURCES                                             -->
+    <!-- ============================================================ -->
+    <footer class="border-t-2 border-black bg-white">
+      <div
+        class="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-3 md:px-8"
+      >
+        <div>
+          <p class="flex items-center gap-2 text-xl font-black">
+            <span
+              aria-hidden="true"
+              class="inline-block h-5 w-5 border-2 border-black bg-orange-600"
+            ></span
+            >CIVICFLOW
+          </p>
+          <p class="mt-3 text-sm">
+            Resilient digital public infrastructure. Licensed under Apache-2.0.
+          </p>
+        </div>
 
-      <div class="md:col-span-2">
-        <h2 class="font-mono text-xs font-bold uppercase tracking-widest">Sources &amp; research</h2>
-        <ul class="mt-4 grid gap-2 text-sm sm:grid-cols-2">
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://caniuse.com/background-sync">Can I use: Background Sync API</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt">MDN: SubtleCrypto.encrypt() and AES-GCM</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://serwist.pages.dev/docs/next/getting-started">Serwist: Next.js getting started</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://tailwindcss.com/docs/installation/play-cdn">Tailwind CSS: Play CDN</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://mermaid.js.org/intro/getting-started.html">Mermaid: getting started</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://help.form.io/developers/offline-mode">Form.io: Offline Mode docs</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://getodk.org/">ODK: Collect data anywhere</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://commcare.dimagi.com/">CommCare by Dimagi</a></li>
-          <li><a class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black" href="https://powersync.com/">PowerSync: sync engine</a></li>
-        </ul>
-        <ul class="mt-4 space-y-1 font-mono text-xs">
-          <li>* Product Hunt search attempted. Results are client-rendered and couldn't be read programmatically.</li>
-          <li>* KoboToolbox (HTTP 403), GOV.UK save-and-return and Singapore FormSG are described from general knowledge and weren't fetched.</li>
-          <li>* Internal: docs/problem_statement.md, docs/civicflow_pitch_and_faq.md, docs/civicflow_strategy_plan.md.</li>
-        </ul>
+        <div class="md:col-span-2">
+          <h2 class="font-mono text-xs font-bold uppercase tracking-widest">
+            Sources &amp; research
+          </h2>
+          <ul class="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://caniuse.com/background-sync"
+                >Can I use: Background Sync API</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt"
+                >MDN: SubtleCrypto.encrypt() and AES-GCM</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://serwist.pages.dev/docs/next/getting-started"
+                >Serwist: Next.js getting started</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://tailwindcss.com/docs/installation/play-cdn"
+                >Tailwind CSS: Play CDN</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://mermaid.js.org/intro/getting-started.html"
+                >Mermaid: getting started</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://help.form.io/developers/offline-mode"
+                >Form.io: Offline Mode docs</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://getodk.org/"
+                >ODK: Collect data anywhere</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://commcare.dimagi.com/"
+                >CommCare by Dimagi</a
+              >
+            </li>
+            <li>
+              <a
+                class="underline decoration-2 underline-offset-2 hover:bg-orange-600 focus:outline-2 focus:outline-offset-2 focus:outline-black"
+                href="https://powersync.com/"
+                >PowerSync: sync engine</a
+              >
+            </li>
+          </ul>
+          <ul class="mt-4 space-y-1 font-mono text-xs">
+            <li>
+              * Product Hunt search attempted. Results are client-rendered and
+              couldn't be read programmatically.
+            </li>
+            <li>
+              * KoboToolbox (HTTP 403), GOV.UK save-and-return and Singapore
+              FormSG are described from general knowledge and weren't fetched.
+            </li>
+            <li>
+              * Internal: docs/problem_statement.md,
+              docs/civicflow_pitch_and_faq.md, docs/civicflow_strategy_plan.md.
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="border-t-2 border-black px-4 py-4 text-center font-mono text-xs md:px-8">
-      Government downtime should not become citizen data loss.
-    </div>
-  </footer>
+      <div
+        class="border-t-2 border-black px-4 py-4 text-center font-mono text-xs md:px-8"
+      >
+        Government downtime should not become citizen data loss.
+      </div>
+    </footer>
 
-  <!-- Mermaid (ESM via CDN) -->
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'base',
-      securityLevel: 'strict',
-      flowchart: { curve: 'linear', htmlLabels: true, useMaxWidth: true, padding: 16 },
-      themeVariables: {
-        primaryColor: '#ffffff',
-        primaryBorderColor: '#000000',
-        primaryTextColor: '#000000',
-        lineColor: '#000000',
-        secondaryColor: '#ffffff',
-        tertiaryColor: '#ffffff',
-        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
-        fontSize: '14px'
-      }
-    });
-  </script>
-</body>
+    <!-- Mermaid (ESM via CDN) -->
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        securityLevel: "strict",
+        flowchart: {
+          curve: "linear",
+          htmlLabels: true,
+          useMaxWidth: true,
+          padding: 16,
+        },
+        themeVariables: {
+          primaryColor: "#ffffff",
+          primaryBorderColor: "#000000",
+          primaryTextColor: "#000000",
+          lineColor: "#000000",
+          secondaryColor: "#ffffff",
+          tertiaryColor: "#ffffff",
+          fontFamily:
+            "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+          fontSize: "14px",
+        },
+      });
+    </script>
+  </body>
 </html>
